@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Movies</title>
-    <link rel="stylesheet" href="public/css/style.css"/>
-    <script src="https://d3js.org/d3.v5.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
+  <link rel="stylesheet" href="public/css/style.css" />
+  <script src="https://d3js.org/d3.v5.js"></script>
 
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <h1>Movies</h1>
-    <p class="info">Name: Keisha Gates, Aaron Lafitte, Brandon Short; A#: A02071489, </p>
-    <div id="year-chart" class="view">
+  <h1>Movies</h1>
+  <p class="info">Name: Keisha Gates, Aaron Lafitte, Brandon Short; A#: A02071489, </p>
+  <div id="year-chart" class="view">
+  </div>
+
+
+
+  <div id="shiftChart" class="view">
+    <h3>Brush selection is: </h3>
+    <span id="stateList"></span>
+  </div>
+
+  <div id="line-chart" class="view">
+    <h2 class="">Line Chart</h2>
+    <div id="plot-selector">
+      <label>Plot:</label>
+      <select id="dataset">
+        <option selected value="attendance">Revenue</option>
+        <option value="teams">Placeholder #2</option>
+        <option value="matches">Placeholder #3</option>
+        <option value="goals">Placeholder #4</option>
+      </select>
     </div>
 
+    <svg id="line-chart-svg">
+      <g id="xAxis"></g>
+      <g id="yAxis"></g>
+      <g id="bars"></g>
+    </svg>
+  </div>
 
 
-    <div id = "shiftChart" class = "view">
-      <h3>Brush selection is: </h3>
-      <span id="stateList"></span>
-    </div>
+  <div id="votes-percentage" class="view">
+  </div>
 
-    <div id = "electoral-vote" class = "view">
-    </div>
+  <div id="tileChart" class="view">
+    <div id="legend" class="view"></div>
+    <div id="tiles" class="view"></div>
+  </div>
+  <script type="application/javascript" src="public/js/lineChart.js"></script>
+  <script type="application/javascript" src="public/js/script.js"></script>
+</body>
 
-
-    <div id = "votes-percentage" class = "view">
-    </div>
-
-    <div id = "tileChart" class = "view">
-      <div id="legend" class = "view"></div>
-      <div id = "tiles" class = "view"></div>
-    </div>
-    <script type="application/javascript" src="public/js/script.js"></script>
-  </body>
 </html>
