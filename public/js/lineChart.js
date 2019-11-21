@@ -6,44 +6,50 @@ class LineChart {
     constructor(movieData) {
         this.movieData = movieData;
     }
-    //need to add up all the revenue for the years for the line chart
 
     update(property) {
         let data = [];
 
-        let justYears = [];
+        let years = [];
+        //need to add up all the revenue for the years for the line chart
 
         this.movieData.forEach(movie => {
-
-            data.push({
-                year: parseInt(movie.release_date.year),
-                property: movie[property]
-            })
-            justYears.push(parseInt(movie.release_date.year))
+            years.push(parseInt(movie.release_date.year))
         });
 
-        data.sort((a, b) => (a.year > b.year) ? 1 : -1)
-
-        let min = parseInt(data[0].year);
-        let max = parseInt(data[data.length - 1].year);
+        //remove duplicate years
+        let uniq = [...new Set(years)];
+        years = Array.from(uniq);
 
         let maxProperty = 0;
+        let sortedYears = years.sort().slice();
+        sortedYears.splice(sortedYears.length - 2, 2) //picked up a NaN somewhere
+        //for each year, get the total revenue
+        sortedYears.forEach(year => {
+            let propertySum = 0;
+            this.movieData.forEach(movie => {
+                if (movie.release_date.year == year) propertySum += parseInt(movie[property]);
+            });
 
-        data.forEach(movie => {
-            if (parseInt(movie.property) > maxProperty) maxProperty = parseInt(movie.property);
-        })
+            //find max
+            if (propertySum > maxProperty) maxProperty = propertySum;
+
+            data.push({
+                year: year,
+                property: propertySum
+            });
+        });
+
 
         // console.log(min)
         // console.log(max)
-        //   console.log(data)
+        console.log(data)
 
         let xaxisHeight = 10;
         let yaxisWidth = 100;
 
-        let xAxisData = justYears.sort().slice();
-        xAxisData.splice(justYears.length-1, 1) //picked up a NaN somewhere
         let xscale = d3.scaleBand()
-            .domain(xAxisData)
+            .domain(sortedYears)
             .range([0, 1200 - yaxisWidth])
             ;
 
@@ -74,6 +80,50 @@ class LineChart {
             // .duration(1000)
             .attr('transform', `translate(${yaxisWidth}, 10)`)
             .call(yaxis)
+            ;
+
+
+        var lineGen = d3.line()
+            .x(function (d) {
+                return xscale(d.year);
+            })
+            .y(function (d) {
+                return yscale(d.property);
+            });
+
+        let updateLine = d3.select("#lines")
+            .selectAll('path')
+            .data(data)
+            ;
+
+        updateLine.enter()
+            .append('path')
+            .merge(updateLine)
+            .attr('transform', 'translate(106.5, 8)')
+            .attr('d', lineGen(data))
+            .attr('stroke', 'green')
+            .attr('stroke-width', 1.5)
+            .attr('fill', 'none');
+        ;
+
+        // let update = d3.select("#lines")
+        //     .selectAll('circle')
+        //     .data(data)
+        //     ;
+
+        // update.enter()
+        //     .append('circle')
+        //     .merge(update)
+        //     .attr('r', 4)
+        //     .attr('transform', 'translate(106.5, 289), scale(1, -1)')
+        //     .attr("cy", d => {
+        //         return d.property / maxProperty * 285
+        //     })
+        //     .attr("cx", (d, i) => {
+        //         return (i * 12.35) //1200 is size of svg
+        //     })
+        //     .attr("fill", "red")
+        //     ;
     }
 }
 
