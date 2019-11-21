@@ -1,43 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Movies</title>
-    <link rel="stylesheet" href="public/css/style.css"/>
-    <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+<h1>Movies</h1>
+<p>Name: Keisha Gates, Aaron Lafitte, Brandon Short; A#: A02071489, </p>
 
-    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  </head>
+<svg id="node-diagram"></svg>
 
-  <body>
+</body>
 
-    <h1>Movies</h1>
-    <p class="info">Name: Keisha Gates, Aaron Lafitte, Brandon Short; A#: A02071489, </p>
-    <div id="year-chart" class="view">
-    </div>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<script type="application/javascript" src="public/js/script.js"></script>
+<script type="application/javascript" src="public/js/nodeDiagram.js"></script>
 
-
-
-    <div id = "shiftChart" class = "view">
-      <h3>Brush selection is: </h3>
-      <span id="stateList"></span>
-    </div>
-
-    <div id = "electoral-vote" class = "view">
-    </div>
-
-
-    <div id = "votes-percentage" class = "view">
-    </div>
-
-    <div id = "tileChart" class = "view">
-      <div id="legend" class = "view"></div>
-      <div id = "tiles" class = "view"></div>
-    </div>
-    <script type="application/javascript" src="public/js/script.js"></script>
-  </body>
 </html>
