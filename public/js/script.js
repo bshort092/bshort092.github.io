@@ -35,7 +35,6 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
       d3.json("data/miserables.json").then(function(graph) {
         let nodeDiagram = new NodeDiagram(movies, credits, graph);
         nodeDiagram.update();
-
       });
   });
 });
