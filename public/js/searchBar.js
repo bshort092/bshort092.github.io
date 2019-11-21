@@ -2,6 +2,7 @@
 
 
 d3.selectAll("#search-bar-container")
+  .select("#search-bar")
   .append('input')
   .attr('id', 'search-bar')
   .attr('type', 'text')
