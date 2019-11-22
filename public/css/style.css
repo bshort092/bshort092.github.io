@@ -2,7 +2,6 @@
 #search-bar-container {
   width: 700px;
   position: absolute;
-  left: 20%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -66,5 +65,9 @@
 }
 
 #line-chart {
+  padding-top: 200px;
+}
+
+#node-diagram {
   padding-top: 220px;
 }
