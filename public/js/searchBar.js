@@ -19,16 +19,27 @@ document.querySelector("#search").addEventListener('input', updateValue);
 
 function updateValue(e) {
   console.log(e.target.value);
+  searchResults.selectAll('li')
+    .remove()
+    .exit()
+    ;
+  searchResults.selectAll('li')
+    .data(data)
+    .enter()
+    .filter(d => d.toLowerCase().includes(e.target.value.toLowerCase()))
+    .append('li')
+    .html(String)
+    .on('click', selectSearch)
+    ;
 }
 
 let data = ["Kevin Bacon", "Johnny Depp", "Reese Witherspoon"]
 let searchResultsAreShown = false;
-var searchResults = searchBarContainer.append('div');
+var searchResults = searchBarContainer.append('div').attr('id', 'search-results')
 
 function selectBarClick() {
   if (!searchResultsAreShown) {
-    searchResults.attr('id', 'search-results')
-      .selectAll('li')
+    searchResults.selectAll('li')
       .data(data)
       .enter()
       .append('li')
@@ -40,9 +51,21 @@ function selectBarClick() {
 }
 
 function selectSearch(select) {
+  searchResultsAreShown = false;
   searchResults.selectAll('li')
     .remove()
     ;
-  searchResultsAreShown = false;
+  d3.select('#selected')
+    .select('h2')
+    .remove()
+    ;
+  let sel = d3.select('#selected')
+    ;
+
+  sel.append('h2')
+    .attr('id', 'selectedPerson')
+    .text(select)
+    ;
+
 }
 

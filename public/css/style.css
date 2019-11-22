@@ -47,3 +47,13 @@
   font-size: 20px;
   padding: 12px, 25px;
 }
+
+#selectedPerson {
+  background-color: teal;
+  height: 32px !important;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+}
