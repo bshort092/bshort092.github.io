@@ -8,9 +8,19 @@ class NodeDiagram {
         // grab the credits of each movie data
         this.credits = creditData;
 
-        this.width = 1000;
+        this.width = 900;
         this.height = 600;
-        this.color = d3.scaleOrdinal(d3.schemeAccent);
+        let domain = [1,2,3];
+
+        //Color range for global color scale
+        // let range = ["#0065b8", "#00b2b8", "#00b82b"];
+        let range = ["#bd0000", "#00b2b8", "#00b82b"];
+
+        //ColorScale be used consistently by all the charts
+        this.color = d3.scaleQuantile()
+            .domain(domain)
+            .range(range);
+        // this.color = d3.scaleOrdinal(d3.schemeTableau10);
 
         this.label;
         this.adjlist;
@@ -126,12 +136,24 @@ class NodeDiagram {
             }).distance(50).strength(1))
             .on("tick", ticked);
 
-        this.svg = d3.select("#node-diagram").attr("width", this.width).attr("height", this.height);
+        this.svg = d3.select("#node-diagram")
+            .attr("width", this.width)
+            .attr("height", this.height);
+
+        this.svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("height", this.height)
+            .attr("width", this.width)
+            .style("stroke", "black")
+            .style("fill", "black")
+            .style("stroke-width", 10);
+
         this.container = this.svg.append("g");
 
         this.svg.call(
             d3.zoom()
-                .scaleExtent([.1, 4])
+                .scaleExtent([.1, 5])
                 .on("zoom", () => {
                     this.container.attr("transform", d3.event.transform);
                 })
@@ -142,7 +164,8 @@ class NodeDiagram {
             .data(this.actorInfo.links)
             .enter()
             .append("line")
-            .attr("stroke", "#aaa")
+            // .attr("stroke", "#aaa")
+            .attr("stroke", "#6e6e6e")
             .attr("stroke-width", "1px");
 
         this.node = this.container.append("g").attr("class", "nodes")
@@ -153,7 +176,10 @@ class NodeDiagram {
             .attr("r", 12)
             .attr("fill", (d) => {
                 return this.color(d.group);
-            });
+            })
+            .attr("stroke", "#000")
+            .attr("stroke-width", 1);
+
 
         this.actorInfo.links.forEach( (d) => {
             this.adjlist[d.source.index + "-" + d.target.index] = true;
@@ -168,17 +194,14 @@ class NodeDiagram {
             .text( (d, i) => {
                 return i % 2 == 0 ? "" : d.node.id;
             })
-            .style("fill", "#000000")
+            .style("fill", "#fff")
             .style("font-family", "Arial")
-            .style("font-weight", "bold")
-            .style("font-size", 10)
+            .style("font-size", 12)
             .style("pointer-events", "none"); // to prevent mouseover/drag capture
 
         let neighbors = (a, b) => {
             return a == b || this.adjlist[a + "-" + b];
         };
-
-
 
         let fixna = (x) => {
             if (isFinite(x)) return x;
@@ -235,8 +258,6 @@ class NodeDiagram {
             d.fy = null;
         };
 
-
-
         this.node.on("mouseover", focus).on("mouseout", unfocus);
 
         this.node.call(
@@ -248,8 +269,6 @@ class NodeDiagram {
 
         this.node.on("mouseover", focus).on("mouseout", unfocus);
 
-
     }
-
 
 }

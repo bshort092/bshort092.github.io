@@ -34,8 +34,8 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
     console.log(credits);
     let nodeDiagram = new NodeDiagram(movies, credits);
     // this is a default actor and actor id; once the user is able to search, these will change.
-    let actor = "Johnny Depp";
-    let actor_id = 85;
+    let actor = "Tom Hanks";
+    let actor_id = 31;
     nodeDiagram.update(actor, actor_id);
   });
 });
