@@ -71,3 +71,11 @@
 #node-diagram {
   padding-top: 220px;
 }
+
+/*Movie Info CSS*/
+.sideBar {
+  display: inline-block;
+  width: 25%;
+  float:right;
+  margin: 50px;
+}
