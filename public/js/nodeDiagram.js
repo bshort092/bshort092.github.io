@@ -3,12 +3,15 @@
 // class to create and update the node link diagram for a specified actor
 class NodeDiagram {
 
-    constructor (movieData) {
+    constructor (movieData, movieInfo) {
         // grab the movie data
         this.movies = movieData;
 
+        // instance of the class MovieInfo
+        this.movieInfo = movieInfo;
+
         // width of the node link diagram
-        this.width = 900;
+        this.width = screen.width * 0.8;
         // height of the node link diagram
         this.height = 600;
 
@@ -62,21 +65,16 @@ class NodeDiagram {
         };
 
         // iterate through each movie
-        for (let i = 0; i < this.movies.length; i++)
-        {
+        for (let i = 0; i < this.movies.length; i++) {
             // iterate through each cast member of the movie
-            for (let j = 0; j < this.movies[i].cast.length; j++)
-            {
+            for (let j = 0; j < this.movies[i].cast.length; j++) {
                 // check if selected actor is in the cast of the movie
-                if (this.movies[i].cast[j].id === actor_id)
-                {
+                if (this.movies[i].cast[j].id === actor_id) {
                     // iterate through the genres the movie pertains to
-                    for (let k = 0; k < this.movies[i].genres.length; k++)
-                    {
+                    for (let k = 0; k < this.movies[i].genres.length; k++) {
                         let genreNode = {id: this.movies[i].genres[k].name, group: 2};
                         // check if the genre has already been added to the actor info array
-                        if (!this.containsObject(this.actorInfo.nodes, genreNode))
-                        {
+                        if (!this.containsObject(this.actorInfo.nodes, genreNode)) {
                             // add the genre node
                             this.actorInfo.nodes.unshift(genreNode);
                             // add the genre to actor link
@@ -305,6 +303,11 @@ class NodeDiagram {
 
         // allow mouse functions for when user is focusing on a node
         this.node.on("mouseover", focus).on("mouseout", unfocus);
+
+
+        this.node.on("click", (d) =>
+            this.movieInfo.update(d.id, this)
+        );
 
         // d3 function for the nodes for when a drag has started, in progress, or has ended
         this.node.call(
