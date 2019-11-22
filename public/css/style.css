@@ -17,7 +17,7 @@
 
 #search-bar-container li{
   background-color: lightsteelblue;
-  width: 98%;
+  width: 97.5%;
   height: 25px;
   font-size: 20px;
   padding: 5px;
@@ -28,7 +28,7 @@
 
 #search-bar-container li:hover {
   background-color: lightgoldenrodyellow;
-  width: 98%;
+  width: 97.5%;
   height: 25px;
   font-size: 20px;
   padding: 5px;
@@ -64,10 +64,6 @@
     width: 1200px;
     height: 350px;
 
-}
-
-#line-chart {
-  padding-top: 200px;
 }
 
 #node-diagram {
