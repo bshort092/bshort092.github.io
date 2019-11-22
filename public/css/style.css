@@ -17,7 +17,7 @@
 
 #search-bar-container li{
   background-color: lightsteelblue;
-  width: 99.2%;
+  width: 98%;
   height: 25px;
   font-size: 20px;
   padding: 5px;
@@ -28,7 +28,7 @@
 
 #search-bar-container li:hover {
   background-color: lightgoldenrodyellow;
-  width: 99.2%;
+  width: 98%;
   height: 25px;
   font-size: 20px;
   padding: 5px;
@@ -37,23 +37,25 @@
   list-style-type: none;
 }
 
-#search-bar {
+#resultSearch {
+  display: flex;
   width: 100%;
 }
 
 #search-bar  input{
-  width: 100%;
+  width: 400px;
   height: 25px;
   font-size: 20px;
   padding: 12px, 25px;
 }
 
 #selectedPerson {
+  width: 100%;
   background-color: #bd0000;
-  height: 32px !important;
+  height: 30px !important;
   margin-left: 5px;
   margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 0px;
   text-align: center;
   color: white;
 }
@@ -69,5 +71,5 @@
 }
 
 #node-diagram {
-  padding-top: 220px;
+  padding-top: 90px;
 }
