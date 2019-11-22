@@ -18,30 +18,36 @@ searchBar.on('click', selectBarClick)
 document.querySelector("#search").addEventListener('input', updateValue);
 
 function updateValue(e) {
-  console.log(e.target.value);
   searchResults.selectAll('li')
     .remove()
     .exit()
     ;
+  let count = 0;
   searchResults.selectAll('li')
     .data(data)
     .enter()
-    .filter(d => d.toLowerCase().includes(e.target.value.toLowerCase()))
+    .filter(function (d) {
+      let res = d.toLowerCase().includes(e.target.value.toLowerCase())
+      if (res) count += 1
+      return res && count <= 4
+    })
     .append('li')
     .html(String)
     .on('click', selectSearch)
     ;
 }
 
-let data = ["Kevin Bacon", "Johnny Depp", "Reese Witherspoon"]
+let data = ["Kevin Bacon", "Johnny Depp", "Reese Witherspoon", "Tom Cruise", "Tom Willis", "Tom Skeeba", "Tom Stone", "Tom Tim"]
 let searchResultsAreShown = false;
 var searchResults = searchBarContainer.append('div').attr('id', 'search-results')
 
 function selectBarClick() {
   if (!searchResultsAreShown) {
+    let count = 0;
     searchResults.selectAll('li')
       .data(data)
       .enter()
+      .filter(d => { count += 1; return count <= 4 })
       .append('li')
       .html(String)
       .on('click', selectSearch)
