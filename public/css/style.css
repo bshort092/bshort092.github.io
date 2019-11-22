@@ -1,3 +1,4 @@
+
 #search-bar-container {
   width: 700px;
   position: absolute;
@@ -56,4 +57,14 @@
   margin-top: 10px;
   text-align: center;
   color: white;
+}
+
+#line-chart-svg {
+    width: 1200px;
+    height: 350px;
+
+}
+
+#line-chart {
+  padding-top: 220px;
 }

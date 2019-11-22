@@ -17,8 +17,6 @@
 
   <h1>Movies</h1>
   <p class="info">Name: Keisha Gates, Aaron Lafitte, Brandon Short; A#: A02071489, </p>
-  <div id="year-chart" class="view">
-  </div>
 
   <div id="search-bar-container">
     <h2>Search</h2>
@@ -29,8 +27,27 @@
     </div>
   </div>
 
-  <!-- <script type="application/javascript" src="public/js/script.js"></script> -->
-  <script type="application/javascript" src="public/js/searchBar.js"></script>
+  <div id="line-chart" class="view">
+    <h2 class="">Line Chart</h2>
+    <div id="plot-selector">
+      <label>Plot:</label>
+      <select id="dataset">
+        <option selected value="attendance">Revenue</option>
+        <option value="teams">Placeholder #2</option>
+        <option value="matches">Placeholder #3</option>
+        <option value="goals">Placeholder #4</option>
+      </select>
+    </div>
+
+    <svg id="line-chart-svg">
+      <g id="xAxis"></g>
+      <g id="yAxis"></g>
+      <g id="lines"></g>
+    </svg>
+  </div>
 </body>
+<script type="application/javascript" src="public/js/lineChart.js"></script>
+<script type="application/javascript" src="public/js/script.js"></script>
+<script type="application/javascript" src="public/js/searchBar.js"></script>
 
 </html>
