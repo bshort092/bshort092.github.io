@@ -1,10 +1,9 @@
 // Adding the search bar with all of its attributes
+let searchContainer = d3.selectAll("#search-bar-container");
+let searchBarContainer = searchContainer.select("#search-bar");
 
-
-d3.selectAll("#search-bar-container")
-  .select("#search-bar")
-  .append('input')
-  .attr('id', 'search-bar')
+searchBarContainer.append('input')
+  .attr('id', 'search')
   .attr('type', 'text')
   .attr('spellcheck', 'false')
   .attr('autocomplete', 'off')
@@ -12,3 +11,35 @@ d3.selectAll("#search-bar-container")
   .attr('display', 'block')
   .attr('width', '100%')
   ;
+
+let searchBar = d3.selectAll('#search');
+searchBar.on('click', selectBarClick)
+
+document.querySelector("#search").addEventListener('input', updateValue);
+
+function updateValue(e) {
+  console.log(e.target.value);
+}
+
+let data = ["Kevin Bacon", "Johnny Depp", "Reese Witherspoon"]
+let searchResultsAreShown = false;
+
+function selectBarClick() {
+  if (!searchResultsAreShown) {
+    searchBarContainer.append('div')
+      .attr('id', 'search-results')
+      .selectAll('li')
+      .data(data)
+      .enter()
+      .append('li')
+      .html(String)
+      .on('mouseover', )
+      ;
+    searchResultsAreShown = true;
+  }
+}
+
+function hoverList(){
+  
+}
+
