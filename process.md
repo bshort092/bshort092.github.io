@@ -6,18 +6,26 @@ Brandon Short                    bshort092@gmail.com   A02193680
 
 _Project Repository:_ https://github.com/KeishaGates/DataVisFinalProj
 
-**Movie Data &quot;I love you 3000&quot;**
+**What Movies Were They In?**
 
-**1.** _Background and Motivation._
+**1.** _Overview and Motivation._
 
 We chose to show visualizations with movie data because we all enjoy movies and wanted to expand on the data to see things like how actors are connected through the movies they have performed in. Since we all watch a lot of movies, we wanted our visualization to show connections and relationships among actors, movies, revenue, reviews, etc, so that we could get an idea of what other movies might be interesting to us based on the movies we have seen. This visualization could help us understand how movies obtain their success.
 
-**2.** _Project Objectives._
+**2.** _Related Work._
+*Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.*
+
+**3.** _Questions._
+*What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?*
 
 Primary Questions:
 
-- What connections exist between actors/directors?
+*The following questions need to be updated* 
+
+- What genres/movies has a specified actor been invovled with?
+- What connections exist between actors?
 - Do the critic reviews relate to the amount of revenue a movie makes?
+- What were the revenues of movies an actor was involved with?
 - What year made the most movies?
 - In each year which movie made the most revenue?
 - Is there a relationship between budget and revenue?
@@ -26,104 +34,58 @@ Primary Questions:
 - Does the runtime relate to anything (budget/revenue/score)?
 - Does the release date affect the success of a movie?
 
-Want to Learn:
+How These Questions evolved
 
-- We want to learn about the relationships among the movie data
-- To be able to find any similarities or patterns between found connections
-- We want to find the recommendations the user can get from the relationships found
-- Actor history in detail based on relationships found in visualization
-- How external views can affect the success of the movie (reviews of critics or audience)
+Our questions are now focused mainly around the actor specified by the user. We want to answer questions relating to the work an actor has done, its related movies' information, and the relationship between an actor and the movie's success (budget vs revenue). We eventually want to add directors as well to learn similar information. With this information, a user can search for their favorite actor/director, and discover the movies they have been involved in based on their history in a node link diagram.
 
-Benefits:
+New Questions to consider:
 
-- To be able to see the correlations between categories like budget vs revenue to see if a movie is more successful with a bigger budget or not.
-- Find good recommendations based on information learned
-- Benefits those who like to see trends within the movie data
+-
 
-**3.** _Data._
+**4.** _Data._
+*Source, scraping method, cleanup, etc.*
 
-Data is obtained from IMDB through Kaggle at:
+~~Data is obtained from IMDB through Kaggle at: https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv~~
 
-https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv
+**5.** _Exploratory Data Analysis._
+*What visualizations did you use to initially look at your data? What insights did you gain? How did these insights inform your design?*
 
-**4.** _Data Processing._
+Visualizations used to look at data:
 
-The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.
+Insights gained:
 
-**5.** _Visualization Design._
+How insights inform the design:
 
-- How to display data ideas:
+~~The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.~~
 
-To find relationships between two quantitative attributes, (like budget vs revenue) we will use line charts. To find the total amount of categorical attributes, we will use bar charts. If the user wants to find a relationship between the actor of choice to another actor, or to find out more about what genres/movies an actor has been in, a node-link diagram will be used.
+**6.** _Design evolution._
+*What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?*
 
-- Prototype 1: Given a list of years, brush over as many years as you want to see the list of movies within those years.
+Visualizations considered:
 
-Justification: Brushing adds user interaction. It is also important to see details about specific movies.
+Justification of design decisions (using perceptual and design principles learned from class):
 
- ![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642529866885103636/unknown.png)
+Deviations from proposal:
 
-- Prototype 2: Find a relationship between two movies through actors and movies.
 
-Justification: Connections between movies could be important to the user, so we wanted to add a way to see those connections. Similar to the 7 degrees of Kevin Bacon idea.
+**7.** _Implementation_
+*Describe the intent and functionality of the interactive visualizations you implemented. Provide clear and well-referenced images showing the key design and interaction elements.*
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642528107617845259/unknown.png)
-
-- Prototype 3: Given a list of years, brush over as many years as you want to show a line chart of the number of movies released in those years.
-
-Justification: Brushing adds user interaction. It is also important to see some of the trends contained in the movie data.
-
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642531711254790165/unknown.png)
-
-- Final Prototype: Use a node-link diagram to show the actor and actor relationship tree. Once a movie is selected, a list of information about the movie and its actors are presented.
-
-Justification: This uses the node link idea, user interactivity, and shows specific movie details. This viz is presented in a clean and easy to understand format.
-
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642526452679704581/unknown.png)
-
-**6.** _Must-Have Features._
-
-- Brushing over years to a list based on filtered criteria
 - Interactivity
-- Filtering by genre
-- Obtaining and using enough movie data
-- Elaborate, yet simple design
-- Filtering based on actor
-- Bar charts
-- Line charts
-- Node-link diagrams
-- Relationship diagrams/charts for filtered data
 - Search bar
+- Filtering based on actor
+- Node-link diagrams
+- Line charts
+- Bar charts
 
-**7.** _Optional Features._
 
-- Brushing over any attribute
-- Filtering based on actor and director
-- Radial charts
-- Stream graphs
-- Animation
+**8.** _Evaluation._
+*What did you learn about the data by using your visualizations? How did you answer your questions? How well does your visualization work, and how could you further improve it?*
 
-**8.** _Project Schedule._
+What we learned:
 
- Week 1: Design/Prototype
+How we answered our questions:
 
-- Aaron: Meet to create design/delegate future work
-- Brandon: Meet to create design/delegate future work
-- Keisha: Meet to create design/delegate future work
+Status of current visualization:
 
- Week 2: Begin Implementation with a starting layout
-
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
-
- Week 3: Implementation
-
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
-
- Week 4: Finalize and wrap up
-
-- Aaron: Refactor and finalize visualizations
-- Brandon: Refactor and finalize visualizations
-- Keisha: Refactor and finalize visualizations
+Improvements:
