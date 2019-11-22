@@ -23,23 +23,26 @@ function updateValue(e) {
 
 let data = ["Kevin Bacon", "Johnny Depp", "Reese Witherspoon"]
 let searchResultsAreShown = false;
+var searchResults = searchBarContainer.append('div');
 
 function selectBarClick() {
   if (!searchResultsAreShown) {
-    searchBarContainer.append('div')
-      .attr('id', 'search-results')
+    searchResults.attr('id', 'search-results')
       .selectAll('li')
       .data(data)
       .enter()
       .append('li')
       .html(String)
-      .on('mouseover', )
+      .on('click', selectSearch)
       ;
     searchResultsAreShown = true;
   }
 }
 
-function hoverList(){
-  
+function selectSearch(select) {
+  searchResults.selectAll('li')
+    .remove()
+    ;
+  searchResultsAreShown = false;
 }
 
