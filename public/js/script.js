@@ -38,10 +38,11 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
         console.log(`ERROR merging csv files: ${id} != ${movie_id}`);
       }
     }
-    console.log(movies)
-    let lineChart = new LineChart(movies)
-    lineChart.update('revenue')
-    console.log(credits);
+    console.log(movies);
+
+    let lineChart = new LineChart(movies);
+    lineChart.update('revenue');
+
     let nodeDiagram = new NodeDiagram(movies);
     // this is a default actor and actor id; once the user is able to search, these will change.
     let actor = "Tom Hanks";
