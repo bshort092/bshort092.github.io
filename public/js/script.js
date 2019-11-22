@@ -32,10 +32,11 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
     }
     console.log(movies);
     console.log(credits);
-      d3.json("data/miserables.json").then(function(graph) {
-        let nodeDiagram = new NodeDiagram(movies, credits, graph);
-        nodeDiagram.update();
-      });
+    let nodeDiagram = new NodeDiagram(movies, credits);
+    // this is a default actor and actor id; once the user is able to search, these will change.
+    let actor = "Johnny Depp";
+    let actor_id = 85;
+    nodeDiagram.update(actor, actor_id);
   });
 });
 
