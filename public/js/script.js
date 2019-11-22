@@ -17,7 +17,7 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
       day: ymd[2]
     }
   });
-  
+
   d3.csv("data/tmdb_5000_credits.csv").then(creditInfo => {
     credits = creditInfo.slice();
     creditInfo.forEach(credit => {
@@ -39,7 +39,6 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
       }
     }
     console.log(movies);
-
     let lineChart = new LineChart(movies);
     lineChart.update('revenue');
 
