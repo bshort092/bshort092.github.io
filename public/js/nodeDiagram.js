@@ -2,11 +2,9 @@
 
 class NodeDiagram {
 
-    constructor (movieData, creditData) {
+    constructor (movieData) {
         // grab the movie data
         this.movies = movieData;
-        // grab the credits of each movie data
-        this.credits = creditData;
 
         this.width = 900;
         this.height = 600;
