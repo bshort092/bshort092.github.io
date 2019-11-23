@@ -15,7 +15,7 @@ We chose to show visualizations with movie data because we all enjoy movies and 
 **2.** _Related Work._
 *Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.*
 
-We went over a Les miserables example in class that showed a node-link diagram connecting each character to one another. We liked the intial idea of being able to show connections between two data points and this seemed like a great fit for some movie data sets that we were also looking at. After some discussion, we thought it would be interesting to take this example one step further and filter down between two actors using a node-link diagram.
+We went over a Les Miserables example in class that showed a node-link diagram connecting each character to one another. We liked the initial idea of being able to show connections between two data points and this seemed like a great fit for some movie data sets that we were also looking at. After some discussion, we thought it would be interesting to take this example one step further and filter down between two actors using a node-link diagram.
 <img src="https://cdn.discordapp.com/attachments/638494334785683467/647623888997449738/unknown.png" alt="alt text" width="400">
 
 **3.** _Questions._
@@ -25,7 +25,7 @@ Primary Questions:
 - What genres/movies has a specified actor been invovled with?
 - What connections exist between actors?
 - What were the revenues of movies an actor was involved with?
-- What recommendations can I get from finding these connections?
+- What recommendations can we get from finding these connections?
 - Are there patterns between actors and genres?
 - Can we also do this node-link diagram for directors?
 - How hard would it be to show 3 actors in a diagram like this and would it be readable?
@@ -73,7 +73,6 @@ Visualizations considered:
 - node-link diagram
 - bar chart
 - brushing years
-- 
 
 Justification of design decisions (using perceptual and design principles learned from class):
 
