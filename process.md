@@ -30,7 +30,6 @@ Primary Questions:
 - Can we also do this node-link diagram for directors?
 - How hard would it be to show 3 actors in a diagram like this and would it be readable?
 - What are some ways that we can clean the node-link diagram to make it easier to understand?
-- Whats the longest path we can find between two actors?
 
 How These Questions evolved
 
@@ -39,7 +38,11 @@ Our questions are now focused mainly around the actor specified by the user. We 
 New Questions to consider:
 
 - What is the relationship between two actors with respect to the movies each were in and each movie's revenue?
-- 
+- Whats the longest path we can find between two actors?
+- Is there an algorithm for giving recommendations to users based off the connections between actors?
+- How would the diagram change if we started at looking at connections between actors and directors rather than actors and actors?
+- What are some ways that we can make the node-link diagram easier to read and understand?
+- Whats the best way to connect all of our visuals together?
 
 **4.** _Data._
 *Source, scraping method, cleanup, etc.*
