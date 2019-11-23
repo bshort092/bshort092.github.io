@@ -57,7 +57,7 @@ It was also necessary to parse some of the JSON contained in the .csv's. This ma
 **5.** _Exploratory Data Analysis._
 
 Visualizations used to look at data: <br/>
-We used tables to view the data using Excel.  
+We used tables to view the data using Excel. It's hard to view multi-dimensional data any other way and this is as multi-dimensional as it gets, so tables seemed like the best way.  
 
 Insights gained: <br/>
 There is a lot of data! We we able to see very quickly how the two .csv's were connected.
