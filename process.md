@@ -142,10 +142,8 @@ We were able to answer the question of what genres and movies were included in a
 
 Status of current visualization:
 
-We need to finish the line chart so it is connected to the other visualizations and reacts to user's selection from the dropdown.
-
 Core elements were prototyped with working functionality.
 
 Improvements:
 
-Be able to incorporate searching for a director or actor with director option acting as the same as the actor option. Update the search to include one or two actors to find the complete history of one actor or to see the correlation between two actors. Implement different types of line charts for the specified actor relating to their movie's revenue, budget, scoring, etc.
+Be able to incorporate searching for a director or actor with director option acting as the same as the actor option. Update the search to include one or two actors to find the complete history of one actor or to see the correlation between two actors. Implement different types of line charts for the specified actor relating to their movie's revenue, budget, scoring, etc. We also need to finish the line chart so it is connected to the other visualizations and reacts to user's selection from the dropdown.
