@@ -6,124 +6,135 @@ Brandon Short                    bshort092@gmail.com   A02193680
 
 _Project Repository:_ https://github.com/KeishaGates/DataVisFinalProj
 
-**Movie Data &quot;I love you 3000&quot;**
+**What Movies Were They In?**
 
-**1.** _Background and Motivation._
+**1.** _Overview and Motivation._
 
 We chose to show visualizations with movie data because we all enjoy movies and wanted to expand on the data to see things like how actors are connected through the movies they have performed in. Since we all watch a lot of movies, we wanted our visualization to show connections and relationships among actors, movies, revenue, reviews, etc, so that we could get an idea of what other movies might be interesting to us based on the movies we have seen. This visualization could help us understand how movies obtain their success.
 
-**2.** _Project Objectives._
+**2.** _Related Work._
+*Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.*
+
+**3.** _Questions._
+*What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?*
 
 Primary Questions:
 
-- What connections exist between actors/directors?
-- Do the critic reviews relate to the amount of revenue a movie makes?
-- What year made the most movies?
-- In each year which movie made the most revenue?
-- Is there a relationship between budget and revenue?
-- Is there a relationship between budget and critic reviews?
-- Which year made the most movies of a specified genre?
-- Does the runtime relate to anything (budget/revenue/score)?
-- Does the release date affect the success of a movie?
+*The following questions need to be updated with respect to questions we were really trying to answer vs questions we were just throwing out there* 
 
-Want to Learn:
+- What genres/movies has a specified actor been invovled with?
+- What connections exist between actors?
+~~- Do the critic reviews relate to the amount of revenue a movie makes?~~
+- What were the revenues of movies an actor was involved with?
+~~- What year made the most movies?~~
+~~- In each year which movie made the most revenue?~~
+~~- Is there a relationship between budget and revenue?~~
+~~- Is there a relationship between budget and critic reviews?~~
+~~- Which year made the most movies of a specified genre?~~
+~~- Does the runtime relate to anything (budget/revenue/score)?~~
+~~- Does the release date affect the success of a movie?~~
 
-- We want to learn about the relationships among the movie data
-- To be able to find any similarities or patterns between found connections
-- We want to find the recommendations the user can get from the relationships found
-- Actor history in detail based on relationships found in visualization
-- How external views can affect the success of the movie (reviews of critics or audience)
+How These Questions evolved
 
-Benefits:
+Our questions are now focused mainly around the actor specified by the user. We want to answer questions relating to the work an actor has done, its related movies' information, and the relationship between an actor and the movie's success (budget vs revenue). We eventually want to add directors as well to learn similar information. With this information, a user can search for their favorite actor/director, and discover the movies they have been involved in based on their history in a node link diagram.
 
-- To be able to see the correlations between categories like budget vs revenue to see if a movie is more successful with a bigger budget or not.
-- Find good recommendations based on information learned
-- Benefits those who like to see trends within the movie data
+New Questions to consider:
 
-**3.** _Data._
+- What is the relationship between two actors with respect to the movies each were in and each movie's revenue?
+- 
 
-Data is obtained from IMDB through Kaggle at:
+**4.** _Data._
+*Source, scraping method, cleanup, etc.*
 
-https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv
+~~Data is obtained from IMDB through Kaggle at: https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv~~
 
-**4.** _Data Processing._
+**5.** _Exploratory Data Analysis._
+*What visualizations did you use to initially look at your data? What insights did you gain? How did these insights inform your design?*
 
-The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.
+Visualizations used to look at data:
 
-**5.** _Visualization Design._
+Insights gained:
 
-- How to display data ideas:
+How insights inform the design:
 
-To find relationships between two quantitative attributes, (like budget vs revenue) we will use line charts. To find the total amount of categorical attributes, we will use bar charts. If the user wants to find a relationship between the actor of choice to another actor, or to find out more about what genres/movies an actor has been in, a node-link diagram will be used.
+By combining the dataset from its original layout in separate csv's into a single array of objects allowed us to grab the information we needed for any visualization in a direct way.
 
-- Prototype 1: Given a list of years, brush over as many years as you want to see the list of movies within those years.
+~~The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.~~
 
-Justification: Brushing adds user interaction. It is also important to see details about specific movies.
+**6.** _Design evolution._
+*What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?*
 
- ![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642529866885103636/unknown.png)
+Visualizations considered:
 
-- Prototype 2: Find a relationship between two movies through actors and movies.
+- line chart
+- bar chart
+- search bar
+- node-link diagram
+- bar chart
+- brushing years
+- 
 
-Justification: Connections between movies could be important to the user, so we wanted to add a way to see those connections. Similar to the 7 degrees of Kevin Bacon idea.
+Justification of design decisions (using perceptual and design principles learned from class):
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642528107617845259/unknown.png)
+Deviations from proposal:
 
-- Prototype 3: Given a list of years, brush over as many years as you want to show a line chart of the number of movies released in those years.
+We decided to focus more on the actor (and soon to include the director) and their relationships with other actors and movies rather than the relationship between a set of movies and their data (revenue, budget, etc).
 
-Justification: Brushing adds user interaction. It is also important to see some of the trends contained in the movie data.
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642531711254790165/unknown.png)
+**7.** _Implementation_
+*Describe the intent and functionality of the interactive visualizations you implemented. Provide clear and well-referenced images showing the key design and interaction elements.*
 
-- Final Prototype: Use a node-link diagram to show the actor and actor relationship tree. Once a movie is selected, a list of information about the movie and its actors are presented.
 
-Justification: This uses the node link idea, user interactivity, and shows specific movie details. This viz is presented in a clean and easy to understand format.
-
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642526452679704581/unknown.png)
-
-**6.** _Must-Have Features._
-
-- Brushing over years to a list based on filtered criteria
-- Interactivity
-- Filtering by genre
-- Obtaining and using enough movie data
-- Elaborate, yet simple design
-- Filtering based on actor
-- Bar charts
-- Line charts
-- Node-link diagrams
-- Relationship diagrams/charts for filtered data
 - Search bar
 
-**7.** _Optional Features._
 
-- Brushing over any attribute
-- Filtering based on actor and director
-- Radial charts
-- Stream graphs
-- Animation
 
-**8.** _Project Schedule._
+- Node-link diagrams
 
- Week 1: Design/Prototype
+The node-link diagram is meant to show the user the movies and genres from a specified actor's history. After the user has searched and seleted an actor, that actor will be placed in the center node of the force directed node-link diagram. From the actor's node will be nodes of each genre of movie the actor performed in. From the genre nodes, movie nodes will be made that can link to more than one genre. If the user hovers the mouse over the actor, the actor node and its connecting genre nodes will be on the only highlighted nodes. Similarly if a genre node is highlighted, the connecting actor and the movies it pertains to will be highlighted. When a movie is hovered over, the movie itself and it's corresponding genres will be highlighted. The following images demonstrate this interactivity of the node-link diagram with the actor Tom Hanks, Genre Family, and Movie Toy Story 2.
 
-- Aaron: Meet to create design/delegate future work
-- Brandon: Meet to create design/delegate future work
-- Keisha: Meet to create design/delegate future work
 
- Week 2: Begin Implementation with a starting layout
+Node-Link Diagram            |  Hover Over Actor Node
+:-------------------------:|:-------------------------:
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502081665531914/Screen_Shot_2019-11-21_at_8.23.04_PM.png" alt="alt text" width="300"> | <img src="https://cdn.discordapp.com/attachments/638494334785683467/647502085348392961/Screen_Shot_2019-11-21_at_8.23.17_PM.png" alt="alt text" width="300"> 
 
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
+Hover Over Genre Node           |  Hover Over Movie Node
+:-------------------------:|:-------------------------:
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502103245488138/Screen_Shot_2019-11-21_at_8.23.53_PM.png" alt="alt text" width="300"> | <img src="https://cdn.discordapp.com/attachments/638494334785683467/647502092537298984/Screen_Shot_2019-11-21_at_8.23.31_PM.png" alt="alt text" width="300">
 
- Week 3: Implementation
+Additionally, the user can drag the nodes around, but once user releases their hold on the node, it will reshape back to a shortest path among nodes for each link. This way, the links will always be fixing themselves to have the shortest length possible for the lines between each set of nodes.
 
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
+- List
 
- Week 4: Finalize and wrap up
+Additional information is provided in a list format about a specific movie in an actor's history. Located within the node-link diagram, a user can select the movie in question and the movie list will update to the right of the screen. Information like the title, tagline, overview, revenue, budget, genres, and cast is provided. While looking through the cast list of the selected movie, if the user wants to find the acting history of a different actor, they can select the actor from the list and this will populate the node-link diagram with the new actor as the middle node. The following image displays a continuation of the node-link diagram's example for choosing Toy Story 2 under the Family genre under the actor Tom Hanks, where the user's cursor is hovering over the actor Tom Hanks in the cast list.
 
-- Aaron: Refactor and finalize visualizations
-- Brandon: Refactor and finalize visualizations
-- Keisha: Refactor and finalize visualizations
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502106349273088/Screen_Shot_2019-11-22_at_12.03.01_AM.png" alt="alt text" width="500">
+
+
+- Line charts
+
+
+
+- Bar charts
+
+
+
+
+**8.** _Evaluation._
+*What did you learn about the data by using your visualizations? How did you answer your questions? How well does your visualization work, and how could you further improve it?*
+
+What we learned:
+
+We learned that it was really useful to combine the separated dataset into one array of objects because it allowed us to easily access the information we needed for all the visualizations created thusfar. 
+
+How we answered our questions:
+
+We were able to answer the question of what genres and movies were included in a specific actor's history by using the node-link diagram. We were able to see connections to other actors by recreating the node-link diagram from the original actor to the actor's other cast member after the new actor selection was made from the movie info list.
+
+Status of current visualization:
+
+Core elements were prototyped with working functionality.
+
+Improvements:
+
+Be able to incorporate searching for a director or actor with director option acting as the same as the actor option. Update the search to include one or two actors to find the complete history of one actor or to see the correlation between two actors. Implement different types of line charts for the specified actor relating to their movie's revenue, budget, scoring, etc.
