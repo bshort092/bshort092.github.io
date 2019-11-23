@@ -16,7 +16,7 @@ We chose to show visualizations with movie data because we all enjoy movies and 
 *Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.*
 
 We went over a Les miserables example in class that showed a node-link diagram connecting each character to one another. We liked the intial idea of being able to show connections between two data points and this seemed like a great fit for some movie data sets that we were also looking at. After some discussion, we thought it would be interesting to take this example one step further and filter down between two actors using a node-link diagram.
-<img src="https://cdn.discordapp.com/attachments/638494334785683467/647623888997449738/unknown.png" alt="alt text" width="300">
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647623888997449738/unknown.png" alt="alt text" width="400">
 
 **3.** _Questions._
 *What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?*
