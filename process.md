@@ -44,23 +44,30 @@ New Questions to consider:
 - What are some ways that we can make the node-link diagram easier to read and understand?
 - Whats the best way to connect all of our visuals together?
 
-**4.** _Data._
-*Source, scraping method, cleanup, etc.*
+**4.**
 
-~~Data is obtained from IMDB through Kaggle at: https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv~~
+Data is obtained through Kaggle at: https://www.kaggle.com/tmdb/tmdb-movie-metadata
+
+We used both of the .csv's listed in this dataset. The first one, tmdb_5000_movies.csv, contained all of the individual movie information. tmdb_5000_credits.csv contained the cast and crew information with a movie_Id to link it to the other .csv.
+
+We were able to combine the .csv's into one array. That array contains all of the information necessary to display the visualization. We did not remove any of the info.
+
+It was also necessary to parse some of the JSON contained in the .csv's. This made it so we could access the cast and crew much more easily.
+
+**Note:** It takes about 3 seconds to load the data once you get to the webpage (there's about 4800 movie info objects that get loaded, parsed, and sorted).
 
 **5.** _Exploratory Data Analysis._
 *What visualizations did you use to initially look at your data? What insights did you gain? How did these insights inform your design?*
 
-Visualizations used to look at data:
+Visualizations used to look at data: <br/>
+We used tables to view the data using Excel.  
 
-Insights gained:
+Insights gained: <br/>
+There is a lot of data! We we able to see very quickly how the two .csv's were connected.
 
-How insights inform the design:
-
+How insights inform the design:<br/>
 By combining the dataset from its original layout in separate csv's into a single array of objects allowed us to grab the information we needed for any visualization in a direct way.
 
-~~The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.~~
 
 **6.** _Design evolution._
 *What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?*
@@ -120,13 +127,13 @@ Additional information is provided in a list format about a specific movie in an
 <img src="https://cdn.discordapp.com/attachments/638494334785683467/647502106349273088/Screen_Shot_2019-11-22_at_12.03.01_AM.png" alt="alt text" width="500">
 
 
-- Line charts
+- Line chart
 
+We want to show properties of movies (revenue, budget, score) that a specfic actor/director was involved in across the years of their career. We also want to expand this so we can show two or more lines (one for each actor/director). The xAxis will be the years of the actor/directors' careers and the yAxis will be the listing of the selected property (revenue, budget, score, etc.).
 
-
-- Bar charts
-
-
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647633996947390476/unknown.png" alt="alt text" width="500">
+ 
+Currently, this chart shows the total revenue of the movies made over all the years contained in our dataset. Once completely implemented, the drop down will have all of the options of different properties for the user to select, and the years will adjust based on the career of the user-selected actor. The y-axis will be based on the max of the property selection and will adjust accordingly. 
 
 
 **8.** _Evaluation._
@@ -141,6 +148,8 @@ How we answered our questions:
 We were able to answer the question of what genres and movies were included in a specific actor's history by using the node-link diagram. We were able to see connections to other actors by recreating the node-link diagram from the original actor to the actor's other cast member after the new actor selection was made from the movie info list.
 
 Status of current visualization:
+
+We need to finish the line chart so it is connected to the other visualizations and reacts to user's selection from the dropdown.
 
 Core elements were prototyped with working functionality.
 
