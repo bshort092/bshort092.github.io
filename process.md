@@ -42,7 +42,7 @@ New Questions to consider:
 - What are some ways that we can make the node-link diagram easier to read and understand?
 - Whats the best way to connect all of our visuals together?
 
-**4.**_Questions._
+**4.** _Data._
 
 Data is obtained through Kaggle at: https://www.kaggle.com/tmdb/tmdb-movie-metadata
 
