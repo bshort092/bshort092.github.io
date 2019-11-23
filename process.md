@@ -13,13 +13,11 @@ _Project Repository:_ https://github.com/KeishaGates/DataVisFinalProj
 We chose to show visualizations with movie data because we all enjoy movies and wanted to expand on the data to see things like how actors are connected through the movies they have performed in. Since we all watch a lot of movies, we wanted our visualization to show connections and relationships among actors, movies, revenue, reviews, etc, so that we could get an idea of what other movies might be interesting to us based on the movies we have seen. This visualization could help us understand how movies obtain their success.
 
 **2.** _Related Work._
-*Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.*
 
 We went over a Les Miserables example in class that showed a node-link diagram connecting each character to one another. We liked the initial idea of being able to show connections between two data points and this seemed like a great fit for some movie data sets that we were also looking at. After some discussion, we thought it would be interesting to take this example one step further and filter down between two actors using a node-link diagram.
 <img src="https://cdn.discordapp.com/attachments/638494334785683467/647623888997449738/unknown.png" alt="alt text" width="400">
 
 **3.** _Questions._
-*What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?*
 
 Primary Questions:
 - What genres/movies has a specified actor been invovled with?
@@ -31,7 +29,7 @@ Primary Questions:
 - How hard would it be to show 3 actors in a diagram like this and would it be readable?
 - What are some ways that we can clean the node-link diagram to make it easier to understand?
 
-How These Questions evolved
+How These Questions evolved:
 
 Our questions are now focused mainly around the actor specified by the user. We want to answer questions relating to the work an actor has done, its related movies' information, and the relationship between an actor and the movie's success (budget vs revenue). We eventually want to add directors as well to learn similar information. With this information, a user can search for their favorite actor/director, and discover the movies they have been involved in based on their history in a node link diagram.
 
@@ -44,7 +42,7 @@ New Questions to consider:
 - What are some ways that we can make the node-link diagram easier to read and understand?
 - Whats the best way to connect all of our visuals together?
 
-**4.**
+**4.**_Questions._
 
 Data is obtained through Kaggle at: https://www.kaggle.com/tmdb/tmdb-movie-metadata
 
@@ -57,7 +55,6 @@ It was also necessary to parse some of the JSON contained in the .csv's. This ma
 **Note:** It takes about 3 seconds to load the data once you get to the webpage (there's about 4800 movie info objects that get loaded, parsed, and sorted).
 
 **5.** _Exploratory Data Analysis._
-*What visualizations did you use to initially look at your data? What insights did you gain? How did these insights inform your design?*
 
 Visualizations used to look at data: <br/>
 We used tables to view the data using Excel.  
@@ -70,7 +67,6 @@ By combining the dataset from its original layout in separate csv's into a singl
 
 
 **6.** _Design evolution._
-*What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?*
 
 Visualizations considered:
 
@@ -96,8 +92,6 @@ Our focus definitely shifted off of the information that is associated directly 
 
 
 **7.** _Implementation_
-*Describe the intent and functionality of the interactive visualizations you implemented. Provide clear and well-referenced images showing the key design and interaction elements.*
-
 
 - Search bar
 
@@ -137,7 +131,6 @@ Currently, this chart shows the total revenue of the movies made over all the ye
 
 
 **8.** _Evaluation._
-*What did you learn about the data by using your visualizations? How did you answer your questions? How well does your visualization work, and how could you further improve it?*
 
 What we learned:
 
