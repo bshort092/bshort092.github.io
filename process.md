@@ -22,20 +22,15 @@ We went over a Les miserables example in class that showed a node-link diagram c
 *What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?*
 
 Primary Questions:
-
-*The following questions need to be updated with respect to questions we were really trying to answer vs questions we were just throwing out there* 
-
 - What genres/movies has a specified actor been invovled with?
 - What connections exist between actors?
-~~- Do the critic reviews relate to the amount of revenue a movie makes?~~
 - What were the revenues of movies an actor was involved with?
-~~- What year made the most movies?~~
-~~- In each year which movie made the most revenue?~~
-~~- Is there a relationship between budget and revenue?~~
-~~- Is there a relationship between budget and critic reviews?~~
-~~- Which year made the most movies of a specified genre?~~
-~~- Does the runtime relate to anything (budget/revenue/score)?~~
-~~- Does the release date affect the success of a movie?~~
+- What recommendations can I get from finding these connections?
+- Are there patterns between actors and genres?
+- Can we also do this node-link diagram for directors?
+- How hard would it be to show 3 actors in a diagram like this and would it be readable?
+- What are some ways that we can clean the node-link diagram to make it easier to understand?
+- Whats the longest path we can find between two actors?
 
 How These Questions evolved
 
