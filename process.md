@@ -94,6 +94,8 @@ Our focus definitely shifted off of the information that is associated directly 
 
 - Search bar
 
+Due to the nature of our data, having a search bar is a necessity. We wanted to be able to query any actor or director and have list of recommended results populate underneath the search (because names are hard to spell). We parsed our data and scraped all names and ids so that we can have a slimmed down data structure for looking up these names. We also wanted to have a search bar that would instantly update every time you typed anything new into it, so that you wouldn't need to completely spell out names to find who you are looking for. After a name is selected, there is small highlighted box with their name and the option to remove them afterward. Also when the name is selected, that information is passed into the node-link diagram to draw the connections and gather the remaining data.
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647635485598154753/unknown.png" alt="alt text" width="500">
 
 
 - Node-link diagrams
