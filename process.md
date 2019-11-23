@@ -82,7 +82,7 @@ _Justification of design decisions (using perceptual and design principles learn
 Our main visualisations will be a node-link diagram showing the connections between actors, genres, and movies, but it will also show a path between two individuals using connection. Node-Link diagram is a great way to display connection because of the nature of the data structure. We will be color coding several aspects of the diagram:
 - Actor 1 will be a red circular node
 - Actor 2 will be a blue circular node
-- Geres will be a teal color node and we are dabbling with the idea of making it a seperate shape to encode that it is itself a different category relative to actors and genres. 
+- Genres will be a teal color node and we are dabbling with the idea of making it a seperate shape to encode that it is itself a different category relative to actors and genres. 
 - Movies are currently a green node and we are also dabbling with the idea of making these a different shape as well. This would be redundant encoding, but it would definitely get the point across. 
 - We plan on having a glowing highlighted path between the actors connecting the link lines, genres, and movies.
 
