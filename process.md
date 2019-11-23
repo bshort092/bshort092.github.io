@@ -76,9 +76,16 @@ Visualizations considered:
 
 Justification of design decisions (using perceptual and design principles learned from class):
 
+Our main visualisations will be a node-link diagram showing the connections between actors, genres, and movies, but it will also show a path between two individuals using connection. Node-Link diagram is a great way to display connection because of the nature of the data structure. We will be color coding several aspects of the diagram:
+- Actor 1 will be a red circular node
+- Actor 2 will be a blue circular node
+- Geres will be a teal color node and we are dabbling with the idea of making it a seperate shape to encode that it is itself a different category relative to actors and genres. 
+- Movies are currently a green node and we are also dabbling with the idea of making these a different shape as well. This would be redundant encoding, but it would definitely get the point across. 
+- We plan on having a glowing highlighted path between the actors connecting the link lines, genres, and movies.
+
 Deviations from proposal:
 
-We decided to focus more on the actor (and soon to include the director) and their relationships with other actors and movies rather than the relationship between a set of movies and their data (revenue, budget, etc).
+Our focus definitely shifted off of the information that is associated directly to movies (revenue, budget, etc) and more to the connections between the people behind the movies. We want to not only be able to see the connections, but the underlying information that's found in the connection, such as an algorithm for recommending movies based off actor/director preference or difference in growth between actors that were in the same movie. 
 
 
 **7.** _Implementation_
