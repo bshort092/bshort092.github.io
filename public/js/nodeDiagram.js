@@ -13,7 +13,7 @@ class NodeDiagram {
         // width of the node link diagram
         this.width = screen.width * 0.8;
         // height of the node link diagram
-        this.height = 1000;
+        this.height = 800;
 
         // set the domain of the min through max color options
         let domain = [1, 2, 3];
