@@ -16,13 +16,21 @@ class NodeDiagram {
         this.height = 600;
 
         // set the domain of the min through max color options
-        let domain = [1,2,3];
+        let domain = [1,2,3,4,5];
         // set the range of colors for the nodes
-        let range = ["#bd0000", "#00b2b8", "#00b82b"];
+        let range = ["#bd0000", "#707070", "#9871b0",
+            "#707070", "#0298de"];
+            // "#00b82b", "#00b2b8"];
+        // set the range of colors for the text
+        let textRange = ["#ffffff", "#edbbbb", "#e9dff0",
+            "#bbdded", "#ffffff"];
         // color scale for the nodes in the node link diagram
         this.color = d3.scaleQuantile()
             .domain(domain)
             .range(range);
+        this.textColor = d3.scaleQuantile()
+            .domain(domain)
+            .range(textRange);
 
         // variable to hold the labels
         this.label;
@@ -55,6 +63,87 @@ class NodeDiagram {
         }
         return false;
     }
+    // check if an object is already inside the array
+    containsLink(array, obj) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].source == obj.source && array[i].target == obj.target) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    addGenreLink(i, actor, group) {
+        for (let k = 0; k < this.movies[i].genres.length; k++) {
+            let genreName = this.movies[i].genres[k].name;
+            if (group === 4) {
+                genreName += '.';
+            }
+            let genreNode = {id: genreName, group: group};
+            // check if the genre has already been added to the actor info array
+            if (!this.containsObject(this.actorInfo.nodes, genreNode)) {
+                // add the genre node
+                this.actorInfo.nodes.unshift(genreNode);
+                // add the genre to actor link
+                this.actorInfo.links.unshift({
+                    source: genreName,
+                    target: actor,
+                    // value: 1
+                });
+            }
+            let genreLink = {
+                source: this.movies[i].title,
+                target: genreName,
+                // value: 1
+            };
+            if (!this.containsLink(this.actorInfo.links, genreLink)) {
+                // add the movie to genre link
+                this.actorInfo.links.push(genreLink);
+            }
+        }
+    }
+
+    checkSameMovie(actor_id, otherActor_id, i) {
+        let sameMovieActors = [];
+        // iterate through each cast member of the movie
+        for (let j = 0; j < this.movies[i].cast.length; j++) {
+            // check if selected actor is in the cast of the movie
+            if (this.movies[i].cast[j].id === actor_id) {
+                sameMovieActors.push(actor_id)
+            }
+            // check if selected other actor is in the cast of the movie
+            if (this.movies[i].cast[j].id === otherActor_id) {
+                sameMovieActors.push(otherActor_id)
+            }
+        }
+        return sameMovieActors;
+    }
+
+    updateTwo(actor, actor_id, otherActor, otherActor_id) {
+        this.actorInfo = {
+            'nodes': [],
+            'links': []
+        };
+
+        // iterate through each movie
+        for (let i = 0; i < this.movies.length; i++) {
+            let sameMovieActors = this.checkSameMovie(actor_id, otherActor_id, i);
+            if (sameMovieActors.length > 1)
+            {
+                this.addGenreLink(i, actor, 2);
+                this.addGenreLink(i, otherActor, 4);
+
+                // add the movie node
+                let movieNode = {id: this.movies[i].title, group: 3};
+                this.actorInfo.nodes.push(movieNode);
+            }
+        }
+        // add the actor node
+        this.actorInfo.nodes.unshift({id: actor, group: 1});
+        this.actorInfo.nodes.unshift({id: otherActor, group: 5});
+
+        this.restructureNodes();
+    }
 
     // update the node link diagram to reflect the selected actor
     update(actor, actor_id) {
@@ -71,34 +160,21 @@ class NodeDiagram {
                 // check if selected actor is in the cast of the movie
                 if (this.movies[i].cast[j].id === actor_id) {
                     // iterate through the genres the movie pertains to
-                    for (let k = 0; k < this.movies[i].genres.length; k++) {
-                        let genreNode = {id: this.movies[i].genres[k].name, group: 2};
-                        // check if the genre has already been added to the actor info array
-                        if (!this.containsObject(this.actorInfo.nodes, genreNode)) {
-                            // add the genre node
-                            this.actorInfo.nodes.unshift(genreNode);
-                            // add the genre to actor link
-                            this.actorInfo.links.unshift({
-                                source: this.movies[i].genres[k].name,
-                                target: actor,
-                                value: 1});
-                        }
-                        // add the movie to genre link
-                        this.actorInfo.links.push({
-                            source: this.movies[i].title,
-                            target: this.movies[i].genres[k].name,
-                            value: 1});
-                    }
+                    this.addGenreLink(i, actor, 2);
                     // add the movie node
                     this.actorInfo.nodes.push({
                         id: this.movies[i].title,
-                        group: 3});
+                        group: 3
+                    });
                     break;
                 }
             }
         }
         // add the actor node
         this.actorInfo.nodes.unshift({id: actor, group: 1});
+        this.restructureNodes();
+    }
+    restructureNodes() {
 
         // adjacency list to find what nodes are next to other nodes
         this.adjlist = [];
@@ -206,12 +282,31 @@ class NodeDiagram {
             .data(this.actorInfo.nodes)
             .enter()
             .append("circle")
-            .attr("r", 12)
+            .attr("r", d => {
+                if (d.group === 1 || d.group === 5) {
+                    return "18"
+                }
+                if (d.group === 2 || d.group === 4) {
+                    return "14"
+                }
+                else {
+                    return "12"
+                }
+            })
             .attr("fill", (d) => {
                 return this.color(d.group);
             })
             .attr("stroke", "#000")
-            .attr("stroke-width", 1);
+            .attr("stroke-width", 1)
+            .style("cursor", d => {
+                if (d.group === 3) {
+                    return "pointer";
+                }
+                else {
+                    return "default";
+                }
+            });
+
 
         // fill in the adjaceny list for which nodes are connected in the format 1-1, 1-2, etc
         this.actorInfo.links.forEach( (d) => {
@@ -228,9 +323,29 @@ class NodeDiagram {
             .text( (d, i) => {
                 return i % 2 == 0 ? "" : d.node.id;
             })
-            .style("fill", "#fff")
+            .style("fill", d => {
+                return this.textColor(d.node.group);
+            })
             .style("font-family", "Arial")
-            .style("font-size", 12)
+            .style("font-size", d => {
+                if (d.node.group === 1 || d.node.group === 5) {
+                    return "18"
+                }
+                if (d.node.group === 2 || d.node.group === 4) {
+                    return "14"
+                }
+                else {
+                    return "12"
+                }
+            })
+            .style("font-weight", d => {
+                if (d.node.group === 3) {
+                    return "bold";
+                }
+                else {
+                    return "normal";
+                }
+            })
             .style("pointer-events", "none"); // to prevent mouseover/drag capture
 
         // function to check the neighbors of the node
@@ -304,7 +419,6 @@ class NodeDiagram {
         // allow mouse functions for when user is focusing on a node
         this.node.on("mouseover", focus).on("mouseout", unfocus);
 
-
         this.node.on("click", (d) =>
             this.movieInfo.update(d.id, this)
         );
@@ -316,10 +430,6 @@ class NodeDiagram {
                 .on("drag", dragged)
                 .on("end", dragended)
         );
-
-        // allow mouse functions for when user is focusing on a node
-        this.node.on("mouseover", focus).on("mouseout", unfocus);
-
     }
 
 }
