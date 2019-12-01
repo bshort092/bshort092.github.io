@@ -52,6 +52,9 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
     let otherActor_id = 63978;
     // nodeDiagram.update(actor, actor_id);
     nodeDiagram.updateTwo(actor, actor_id, otherActor, otherActor_id);
+
+    // UNCOMMENT THIS FOR THE SEARCH ABILITY, BUT IT ELIMINATES THE MULTI-ACTOR ABILITY:
+    // let searchBar = new SearchBar(nodeDiagram);
   });
 });
 

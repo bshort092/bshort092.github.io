@@ -6,124 +6,144 @@ Brandon Short                    bshort092@gmail.com   A02193680
 
 _Project Repository:_ https://github.com/KeishaGates/DataVisFinalProj
 
-**Movie Data &quot;I love you 3000&quot;**
+**What Movies Were They In?**
 
-**1.** _Background and Motivation._
+**1.** _Overview and Motivation._
 
 We chose to show visualizations with movie data because we all enjoy movies and wanted to expand on the data to see things like how actors are connected through the movies they have performed in. Since we all watch a lot of movies, we wanted our visualization to show connections and relationships among actors, movies, revenue, reviews, etc, so that we could get an idea of what other movies might be interesting to us based on the movies we have seen. This visualization could help us understand how movies obtain their success.
 
-**2.** _Project Objectives._
+**2.** _Related Work._
+
+We went over a Les Miserables example in class that showed a node-link diagram connecting each character to one another. We liked the initial idea of being able to show connections between two data points and this seemed like a great fit for some movie data sets that we were also looking at. After some discussion, we thought it would be interesting to take this example one step further and filter down between two actors using a node-link diagram.
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647623888997449738/unknown.png" alt="alt text" width="400">
+
+**3.** _Questions._
 
 Primary Questions:
+- What genres/movies has a specified actor been invovled with?
+- What connections exist between actors?
+- What were the revenues of movies an actor was involved with?
+- What recommendations can we get from finding these connections?
+- Are there patterns between actors and genres?
+- Can we also do this node-link diagram for directors?
+- How hard would it be to show 3 actors in a diagram like this and would it be readable?
+- What are some ways that we can clean the node-link diagram to make it easier to understand?
 
-- What connections exist between actors/directors?
-- Do the critic reviews relate to the amount of revenue a movie makes?
-- What year made the most movies?
-- In each year which movie made the most revenue?
-- Is there a relationship between budget and revenue?
-- Is there a relationship between budget and critic reviews?
-- Which year made the most movies of a specified genre?
-- Does the runtime relate to anything (budget/revenue/score)?
-- Does the release date affect the success of a movie?
+How These Questions evolved:
 
-Want to Learn:
+Our questions are now focused mainly around the actor specified by the user. We want to answer questions relating to the work an actor has done, its related movies' information, and the relationship between an actor and the movie's success (budget vs revenue). We eventually want to add directors as well to learn similar information. With this information, a user can search for their favorite actor/director, and discover the movies they have been involved in based on their history in a node link diagram.
 
-- We want to learn about the relationships among the movie data
-- To be able to find any similarities or patterns between found connections
-- We want to find the recommendations the user can get from the relationships found
-- Actor history in detail based on relationships found in visualization
-- How external views can affect the success of the movie (reviews of critics or audience)
+New Questions to consider:
 
-Benefits:
+- What is the relationship between two actors with respect to the movies each were in and each movie's revenue?
+- Whats the longest path we can find between two actors?
+- Is there an algorithm for giving recommendations to users based off the connections between actors?
+- How would the diagram change if we started at looking at connections between actors and directors rather than actors and actors?
+- What are some ways that we can make the node-link diagram easier to read and understand?
+- Whats the best way to connect all of our visuals together?
 
-- To be able to see the correlations between categories like budget vs revenue to see if a movie is more successful with a bigger budget or not.
-- Find good recommendations based on information learned
-- Benefits those who like to see trends within the movie data
+**4.** _Data._
 
-**3.** _Data._
+Data is obtained through Kaggle at: https://www.kaggle.com/tmdb/tmdb-movie-metadata
 
-Data is obtained from IMDB through Kaggle at:
+We used both of the .csv's listed in this dataset. The first one, tmdb_5000_movies.csv, contained all of the individual movie information. tmdb_5000_credits.csv contained the cast and crew information with a movie_Id to link it to the other .csv.
 
-https://www.kaggle.com/rounakbanik/the-movies-dataset#movies\_metadata.csv
+We were able to combine the .csv's into one array. That array contains all of the information necessary to display the visualization. We did not remove any of the info.
 
-**4.** _Data Processing._
+It was also necessary to parse some of the JSON contained in the .csv's. This made it so we could access the cast and crew much more easily.
 
-The original dataset is 900 MB with several columns that don&#39;t play a role in our visualization, therefore, we will need to remove unused columns. The rest of the data will be used in the visualization through filtering and aggregation. We will initially load the csv file into javascript objects that we will filter based on the user&#39;s settings.
+**Note:** It takes about 3 seconds to load the data once you get to the webpage (there's about 4800 movie info objects that get loaded, parsed, and sorted).
 
-**5.** _Visualization Design._
+**5.** _Exploratory Data Analysis._
 
-- How to display data ideas:
+Visualizations used to look at data: <br/>
+We used tables to view the data using Excel. It's hard to view multi-dimensional data any other way and this is as multi-dimensional as it gets, so tables seemed like the best way.  
 
-To find relationships between two quantitative attributes, (like budget vs revenue) we will use line charts. To find the total amount of categorical attributes, we will use bar charts. If the user wants to find a relationship between the actor of choice to another actor, or to find out more about what genres/movies an actor has been in, a node-link diagram will be used.
+Insights gained: <br/>
+There is a lot of data! We we able to see very quickly how the two .csv's were connected.
 
-- Prototype 1: Given a list of years, brush over as many years as you want to see the list of movies within those years.
+How insights inform the design:<br/>
+By combining the dataset from its original layout in separate csv's into a single array of objects allowed us to grab the information we needed for any visualization in a direct way.
 
-Justification: Brushing adds user interaction. It is also important to see details about specific movies.
 
- ![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642529866885103636/unknown.png)
+**6.** _Design evolution._
 
-- Prototype 2: Find a relationship between two movies through actors and movies.
+Visualizations considered:
 
-Justification: Connections between movies could be important to the user, so we wanted to add a way to see those connections. Similar to the 7 degrees of Kevin Bacon idea.
+- line chart
+- bar chart
+- search bar
+- node-link diagram
+- bar chart
+- brushing years
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642528107617845259/unknown.png)
+_Justification of design decisions (using perceptual and design principles learned from class):_
 
-- Prototype 3: Given a list of years, brush over as many years as you want to show a line chart of the number of movies released in those years.
+Our main visualisations will be a node-link diagram showing the connections between actors, genres, and movies, but it will also show a path between two individuals using connection. Node-Link diagram is a great way to display connection because of the nature of the data structure. We will be color coding several aspects of the diagram:
+- Actor 1 will be a red circular node
+- Actor 2 will be a blue circular node
+- Genres will be a teal color node and we are dabbling with the idea of making it a seperate shape to encode that it is itself a different category relative to actors and genres. 
+- Movies are currently a green node and we are also dabbling with the idea of making these a different shape as well. This would be redundant encoding, but it would definitely get the point across. 
+- We plan on having a glowing highlighted path between the actors connecting the link lines, genres, and movies.
 
-Justification: Brushing adds user interaction. It is also important to see some of the trends contained in the movie data.
+_Deviations from proposal:_
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642531711254790165/unknown.png)
+Our focus definitely shifted off of the information that is associated directly to movies (revenue, budget, etc) and more to the connections between the people behind the movies. We want to not only be able to see the connections, but the underlying information that's found in the connection, such as an algorithm for recommending movies based off actor/director preference or difference in growth between actors that were in the same movie. 
 
-- Final Prototype: Use a node-link diagram to show the actor and actor relationship tree. Once a movie is selected, a list of information about the movie and its actors are presented.
 
-Justification: This uses the node link idea, user interactivity, and shows specific movie details. This viz is presented in a clean and easy to understand format.
+**7.** _Implementation_
 
-![alt text](https://cdn.discordapp.com/attachments/638494334785683467/642526452679704581/unknown.png)
-
-**6.** _Must-Have Features._
-
-- Brushing over years to a list based on filtered criteria
-- Interactivity
-- Filtering by genre
-- Obtaining and using enough movie data
-- Elaborate, yet simple design
-- Filtering based on actor
-- Bar charts
-- Line charts
-- Node-link diagrams
-- Relationship diagrams/charts for filtered data
 - Search bar
 
-**7.** _Optional Features._
+Due to the nature of our data, having a search bar is a necessity. We wanted to be able to query any actor or director and have list of recommended results populate underneath the search (because names are hard to spell). We parsed our data and scraped all names and ids so that we can have a slimmed down data structure for looking up these names. We also wanted to have a search bar that would instantly update every time you typed anything new into it, so that you wouldn't need to completely spell out names to find who you are looking for. After a name is selected, there is small highlighted box with their name and the option to remove them afterward. Also when the name is selected, that information is passed into the node-link diagram to draw the connections and gather the remaining data.
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647635485598154753/unknown.png" alt="alt text" width="500">
 
-- Brushing over any attribute
-- Filtering based on actor and director
-- Radial charts
-- Stream graphs
-- Animation
 
-**8.** _Project Schedule._
+- Node-link diagrams
 
- Week 1: Design/Prototype
+The node-link diagram is meant to show the user the movies and genres from a specified actor's history. After the user has searched and seleted an actor, that actor will be placed in the center node of the force directed node-link diagram. From the actor's node will be nodes of each genre of movie the actor performed in. From the genre nodes, movie nodes will be made that can link to more than one genre. If the user hovers the mouse over the actor, the actor node and its connecting genre nodes will be on the only highlighted nodes. Similarly if a genre node is highlighted, the connecting actor and the movies it pertains to will be highlighted. When a movie is hovered over, the movie itself and it's corresponding genres will be highlighted. The following images demonstrate this interactivity of the node-link diagram with the actor Tom Hanks, Genre: *Family*, and Movie: *Toy Story 2*.
 
-- Aaron: Meet to create design/delegate future work
-- Brandon: Meet to create design/delegate future work
-- Keisha: Meet to create design/delegate future work
 
- Week 2: Begin Implementation with a starting layout
+Node-Link Diagram            |  Hover Over Actor Node
+:-------------------------:|:-------------------------:
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502081665531914/Screen_Shot_2019-11-21_at_8.23.04_PM.png" alt="alt text" width="300"> | <img src="https://cdn.discordapp.com/attachments/638494334785683467/647502085348392961/Screen_Shot_2019-11-21_at_8.23.17_PM.png" alt="alt text" width="300"> 
 
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
+Hover Over Genre Node           |  Hover Over Movie Node
+:-------------------------:|:-------------------------:
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502103245488138/Screen_Shot_2019-11-21_at_8.23.53_PM.png" alt="alt text" width="300"> | <img src="https://cdn.discordapp.com/attachments/638494334785683467/647502092537298984/Screen_Shot_2019-11-21_at_8.23.31_PM.png" alt="alt text" width="300">
 
- Week 3: Implementation
+Additionally, the user can drag the nodes around, but once user releases their hold on the node, it will reshape back to a shortest path among nodes for each link. This way, the links will always be fixing themselves to have the shortest length possible for the lines between each set of nodes.
 
-- Aaron: Implement a vis
-- Brandon: Implement a vis
-- Keisha: Implement a vis
+- List
 
- Week 4: Finalize and wrap up
+Additional information is provided in a list format about a specific movie in an actor's history. Located within the node-link diagram, a user can select the movie in question and the movie list will update to the right of the screen. Information like the title, tagline, overview, revenue, budget, genres, and cast is provided. While looking through the cast list of the selected movie, if the user wants to find the acting history of a different actor, they can select the actor from the list and this will populate the node-link diagram with the new actor as the middle node. The following image displays a continuation of the node-link diagram's example for choosing Toy Story 2 under the *Family* genre under the actor *Tom Hanks*, where the user's cursor is hovering over the actor *Tom Hanks* in the cast list.
 
-- Aaron: Refactor and finalize visualizations
-- Brandon: Refactor and finalize visualizations
-- Keisha: Refactor and finalize visualizations
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647502106349273088/Screen_Shot_2019-11-22_at_12.03.01_AM.png" alt="alt text" width="500">
+
+
+- Line chart
+
+We want to show properties of movies (revenue, budget, score) that a specfic actor/director was involved in across the years of their career. We also want to expand this so we can show two or more lines (one for each actor/director). The xAxis will be the years of the actor/directors' careers and the yAxis will be the listing of the selected property (revenue, budget, score, etc.).
+
+<img src="https://cdn.discordapp.com/attachments/638494334785683467/647633996947390476/unknown.png" alt="alt text" width="500">
+ 
+Currently, this chart shows the total revenue of the movies made over all the years contained in our dataset. Once completely implemented, the drop down will have all of the options of different properties for the user to select, and the years will adjust based on the career of the user-selected actor. The y-axis will be based on the max of the property selection and will adjust accordingly. 
+
+
+**8.** _Evaluation._
+
+What we learned:
+
+We learned that it was really useful to combine the separated dataset into one array of objects because it allowed us to easily access the information we needed for all the visualizations created thusfar. 
+
+How we answered our questions:
+
+We were able to answer the question of what genres and movies were included in a specific actor's history by using the node-link diagram. We were able to see connections to other actors by recreating the node-link diagram from the original actor to the actor's other cast member after the new actor selection was made from the movie info list.
+
+Status of current visualization:
+
+Core elements were prototyped with working functionality.
+
+Improvements:
+
+Be able to incorporate searching for a director or actor with director option acting as the same as the actor option. Update the search to include one or two actors to find the complete history of one actor or to see the correlation between two actors. Implement different types of line charts for the specified actor relating to their movie's revenue, budget, scoring, etc. We also need to finish the line chart so it is connected to the other visualizations and reacts to user's selection from the dropdown.

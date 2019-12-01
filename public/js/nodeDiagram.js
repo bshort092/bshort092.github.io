@@ -3,7 +3,7 @@
 // class to create and update the node link diagram for a specified actor
 class NodeDiagram {
 
-    constructor (movieData, movieInfo) {
+    constructor(movieData, movieInfo) {
         // grab the movie data
         this.movies = movieData;
 
@@ -13,7 +13,7 @@ class NodeDiagram {
         // width of the node link diagram
         this.width = screen.width * 0.8;
         // height of the node link diagram
-        this.height = 600;
+        this.height = 800;
 
         // set the domain of the min through max color options
         let domain = [1,2,3,4,5];
@@ -187,8 +187,8 @@ class NodeDiagram {
 
         // go through the actor infos and duplicate the nodes to have a link to and from
         this.actorInfo.nodes.forEach((d, i) => {
-            this.label.nodes.push({node: d});
-            this.label.nodes.push({node: d});
+            this.label.nodes.push({ node: d });
+            this.label.nodes.push({ node: d });
             this.label.links.push({
                 source: i * 2,
                 target: i * 2 + 1
@@ -206,8 +206,8 @@ class NodeDiagram {
             this.link.call(updateLink);
 
             this.labelLayout.alphaTarget(0.3).restart();
-            this.labelNode.each(function(d, i) {
-                if(i % 2 == 0) {
+            this.labelNode.each(function (d, i) {
+                if (i % 2 == 0) {
                     d.x = d.node.x;
                     d.y = d.node.y;
                 } else {
@@ -234,7 +234,7 @@ class NodeDiagram {
             .force("center", d3.forceCenter(this.width / 2, this.height / 2))
             .force("x", d3.forceX(this.width / 2).strength(1))
             .force("y", d3.forceY(this.height / 2).strength(1))
-            .force("link", d3.forceLink(this.actorInfo.links).id( (d) => {
+            .force("link", d3.forceLink(this.actorInfo.links).id((d) => {
                 return d.id;
             }).distance(50).strength(1))
             .on("tick", ticked);
@@ -309,7 +309,7 @@ class NodeDiagram {
 
 
         // fill in the adjaceny list for which nodes are connected in the format 1-1, 1-2, etc
-        this.actorInfo.links.forEach( (d) => {
+        this.actorInfo.links.forEach((d) => {
             this.adjlist[d.source.index + "-" + d.target.index] = true;
             this.adjlist[d.target.index + "-" + d.source.index] = true;
         });
@@ -320,7 +320,7 @@ class NodeDiagram {
             .data(this.label.nodes)
             .enter()
             .append("text")
-            .text( (d, i) => {
+            .text((d, i) => {
                 return i % 2 == 0 ? "" : d.node.id;
             })
             .style("fill", d => {
@@ -366,7 +366,7 @@ class NodeDiagram {
                 return neighbors(index, o.index) ? 1 : 0.3;
             });
             this.labelNode.attr("display", (o) => {
-                return neighbors(index, o.node.index) ? "block": "none";
+                return neighbors(index, o.node.index) ? "block" : "none";
             });
             this.link.style("opacity", (o) => {
                 return o.source.index == index || o.target.index == index ? 1 : 0.3;
