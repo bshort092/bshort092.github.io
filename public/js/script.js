@@ -1,3 +1,4 @@
+let lineChart = null;
 d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
   let movies = [];
   let credits = [];
@@ -39,10 +40,8 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
       }
     }
     console.log(movies);
-    let lineChart = new LineChart(movies);
-    lineChart.update('revenue');
-
-
+    
+    
     let movieInfo = new MovieInfo(movies);
     let nodeDiagram = new NodeDiagram(movies, movieInfo);
     // this is a default actor and actor id; once the user is able to search, these will change.
@@ -52,6 +51,10 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
     let otherActor_id = 63978;
     // nodeDiagram.update(actor, actor_id);
     nodeDiagram.updateTwo(actor, actor_id, otherActor, otherActor_id);
+    
+    lineChart = new LineChart(movies);
+    // lineChart.update(document.getElementById('dataset').value, actor_id);
+    lineChart.update2(document.getElementById('dataset').value, 31, 63978);
 
     // UNCOMMENT THIS FOR THE SEARCH ABILITY, BUT IT ELIMINATES THE MULTI-ACTOR ABILITY:
     // let searchBar = new SearchBar(nodeDiagram);
@@ -59,9 +62,10 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
 });
 
 //something that might be useful for changing data in line chart
-// function chooseProperty() {
-//   let selection = document.getElementById('dataset').value;
+function chooseProperty() {
+  console.log("HEY")
+  let selection = document.getElementById('dataset').value;
 
-//   barChart.updateBarChart(selection);
-// }
+  lineChart.update2(selection, 31, 63978);
+}
 
