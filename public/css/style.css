@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+
 }
 
 #search-bar-container h2{
@@ -14,7 +14,7 @@
   height: 15px;
 }
 
-#search-results{
+.search-results{
   position: absolute;
 }
 
@@ -40,21 +40,27 @@
   list-style-type: none;
 }
 
-#resultSearch {
-  display: flex;
-  width: 100%;
-}
-
-#search-bar  input{
+.search-bar  input{
   width: 400px;
   height: 25px;
   font-size: 20px;
   padding: 12px, 25px;
 }
 
-#selectedPerson {
+#selectedPersonOne {
   width: 100%;
   background-color: #bd0000;
+  height: 30px !important;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 0px;
+  text-align: center;
+  color: white;
+}
+
+#selectedPersonTwo {
+  width: 100%;
+  background-color: #0298de;
   height: 30px !important;
   margin-left: 5px;
   margin-right: 10px;
@@ -83,4 +89,10 @@
   padding: 1%;
   height: 770px;
   overflow-y: scroll;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
