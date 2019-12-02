@@ -36,6 +36,7 @@ class SearchBar {
       document.querySelector("#searchOne").addEventListener('input', updateValueOne);
       document.querySelector("#searchTwo").addEventListener('input', updateValueTwo);
 
+
       function updateValueOne(e) {
         searchResultsOne.selectAll('li')
           .remove()
@@ -116,6 +117,22 @@ class SearchBar {
           searchResultsAreShownTwo = true;
         }
       }
+
+      document.onclick = function (e) {
+        if (e.target.id !== 'searchOne' && searchResultsAreShownOne) {
+          searchResultsOne.selectAll('li')
+            .remove()
+            ;
+          searchResultsAreShownOne = false;
+        }
+
+        if (e.target.id !== 'searchTwo' && searchResultsAreShownTwo) {
+          searchResultsTwo.selectAll('li')
+            .remove()
+            ;
+          searchResultsAreShownTwo = false;
+        }
+      };
 
       function selectSearchOne(select) {
         searchResultsAreShownOne = false;
