@@ -128,9 +128,11 @@ class LineChart {
             .merge(updateLine)
             .attr('transform', 'translate(106.5, 8)')
             .attr('d', lineGen(data))
+            .transition()
+            .duration(1000)
             .attr('stroke', 'green')
             .attr('stroke-width', 1.5)
-            .attr('fill', 'none');
+            .attr('fill', 'none')
         ;
 
         // let update = d3.select("#lines")
@@ -261,8 +263,8 @@ class LineChart {
             ;
 
         d3.select('#yAxis')
-            // .transition()
-            // .duration(1000)
+            .transition()
+            .duration(1000)
             .attr('transform', `translate(${yaxisWidth}, 10)`)
             .call(yaxis)
             ;
@@ -285,11 +287,13 @@ class LineChart {
             .append('path')
             .attr('class', 'line-1')
             .merge(updateLine)
+            .transition()
+            .duration(1000)
             .attr('transform', 'translate(116, 8)')
             .attr('d', lineGen(data))
             .attr('stroke', '#bd0000')
             .attr('stroke-width', 1.5)
-            .attr('fill', 'none');
+            .attr('fill', 'none')
         ;
 
         let updateLine2 = d3.select("#lines")
@@ -301,11 +305,13 @@ class LineChart {
             .append('path')
             .attr('class', 'line-2')
             .merge(updateLine2)
+            .transition()
+            .duration(1000)
             .attr('transform', 'translate(116, 8)')
             .attr('d', lineGen(data2))
             .attr('stroke', '#0298de')
             .attr('stroke-width', 1.5)
-            .attr('fill', 'none');
+            .attr('fill', 'none')
         ;
 
         // let update = d3.select("#lines")
