@@ -49,7 +49,7 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
 //something that might be useful for changing data in line chart
 function chooseProperty() {
   let selection = document.getElementById('dataset').value;
-
-  lineChart.update2(selection, 31, 63978);
+  if (lineChart.person2 === null) lineChart.update(selection, lineChart.person1)
+  else lineChart.update2(selection, lineChart.person1, lineChart.person2);
 }
 

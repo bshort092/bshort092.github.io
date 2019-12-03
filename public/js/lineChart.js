@@ -20,6 +20,8 @@ class LineChart {
         this.movieData = movieData;
     }
 
+
+
     // check if an object is already inside the array
     containsId(array, id) {
         let returnBool = false;
@@ -30,6 +32,10 @@ class LineChart {
     }
 
     update(property, actor_id) {
+
+        this.person1 = actor_id;
+        this.person2 = null;
+
         let data = [];
         let years = [];
         let actorMovies = [];
@@ -103,8 +109,8 @@ class LineChart {
             ;
 
         d3.select('#yAxis')
-            // .transition()
-            // .duration(1000)
+            .transition()
+            .duration(1000)
             .attr('transform', `translate(${yaxisWidth}, 10)`)
             .call(yaxis)
             ;
@@ -119,6 +125,7 @@ class LineChart {
             });
 
         d3.select("#lines").selectAll('.line-2').remove();
+        
         let updateLine = d3.select("#lines")
             .selectAll('path')
             .data(data)
@@ -127,11 +134,11 @@ class LineChart {
         updateLine.enter()
             .append('path')
             .merge(updateLine)
-            .attr('transform', 'translate(106.5, 8)')
-            .attr('d', lineGen(data))
             .transition()
             .duration(1000)
-            .attr('stroke', 'green')
+            .attr('transform', 'translate(116, 8)')
+            .attr('d', lineGen(data))
+            .attr('stroke', '#bd0000')
             .attr('stroke-width', 1.5)
             .attr('fill', 'none')
             ;
@@ -157,6 +164,10 @@ class LineChart {
     }
 
     update2(property, actor_id, actor_id_2) {
+
+        this.person1 = actor_id;
+        this.person2 = actor_id_2;
+
         let data = [];
         let data2 = [];
         let years = [];
