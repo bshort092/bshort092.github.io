@@ -17,11 +17,11 @@ class NodeDiagram {
         this.height = 800;
 
         // set the domain of the min through max color options
-        let domain = [1,2,3,4,5];
+        let domain = [1, 2, 3, 4, 5];
         // set the range of colors for the nodes
         let range = ["#bd0000", "#707070", "#9871b0",
             "#707070", "#0298de"];
-            // "#00b82b", "#00b2b8"];
+        // "#00b82b", "#00b2b8"];
         // set the range of colors for the text
         let textRange = ["#ffffff", "#edbbbb", "#e9dff0",
             "#bbdded", "#ffffff"];
@@ -80,7 +80,7 @@ class NodeDiagram {
             if (group === 4) {
                 genreName += '.';
             }
-            let genreNode = {id: genreName, group: group};
+            let genreNode = { id: genreName, group: group };
             // check if the genre has already been added to the actor info array
             if (!this.containsObject(this.actorInfo.nodes, genreNode)) {
                 // add the genre node
@@ -131,19 +131,18 @@ class NodeDiagram {
         // iterate through each movie
         for (let i = 0; i < this.movies.length; i++) {
             let sameMovieActors = this.checkSameMovie(actor_id, otherActor_id, i);
-            if (sameMovieActors.length > 1)
-            {
+            if (sameMovieActors.length > 1) {
                 this.addGenreLink(i, actor, 2);
                 this.addGenreLink(i, otherActor, 4);
 
                 // add the movie node
-                let movieNode = {id: this.movies[i].title, group: 3};
+                let movieNode = { id: this.movies[i].title, group: 3 };
                 this.actorInfo.nodes.push(movieNode);
             }
         }
         // add the actor node
-        this.actorInfo.nodes.unshift({id: actor, group: 1});
-        this.actorInfo.nodes.unshift({id: otherActor, group: 5});
+        this.actorInfo.nodes.unshift({ id: actor, group: 1 });
+        this.actorInfo.nodes.unshift({ id: otherActor, group: 5 });
 
         this.restructureNodes();
     }
@@ -174,7 +173,7 @@ class NodeDiagram {
             }
         }
         // add the actor node
-        this.actorInfo.nodes.unshift({id: actor, group: 1});
+        this.actorInfo.nodes.unshift({ id: actor, group: 1 });
         this.restructureNodes();
     }
     restructureNodes() {
@@ -429,6 +428,11 @@ class NodeDiagram {
                 .on("drag", dragged)
                 .on("end", dragended)
         );
+    }
+
+    subscribe(searchBar) {
+        this.searchBar = searchBar
+        this.movieInfo.subscribe(searchBar)
     }
 
 }

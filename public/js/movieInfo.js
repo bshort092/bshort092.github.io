@@ -4,15 +4,15 @@ class MovieInfo {
         // grab the movie data
         this.movies = movieData;
 
-        this.spanMovieList= d3.select("#movieInfoList").classed("sideBar", true);
+        this.spanMovieList = d3.select("#movieInfoList").classed("sideBar", true);
     }
     // update function to change the info given in the movie info screen
     update(movieName, nodeDiagram) {
         // find the move that matches the title
-        let foundMovie = this.movies.find(function(movie) {
+        let foundMovie = this.movies.find(function (movie) {
             return movie.title == movieName;
         });
-
+        var self = this;
         if (foundMovie) {
             // remove previous movie info
             d3.selectAll('.movieInfoText').remove();
@@ -38,8 +38,10 @@ class MovieInfo {
                     .append('li')
                     .text(foundMovie.cast[i].name + "  \"" + foundMovie.cast[i].character + "\"")
                     .attr('class', 'movieInfoText')
-                    .on('click', (d) =>
+                    .on('click', (d) => {
                         nodeDiagram.update(foundMovie.cast[i].name, foundMovie.cast[i].id)
+                        self.searchBar.updateActor(foundMovie.cast[i].name, foundMovie.cast[i].id)
+                    }
                     )
                     .style('color', '#bd0000')
                     .on('mouseover', function (d) {
@@ -48,8 +50,12 @@ class MovieInfo {
                     .on('mouseout', function (d) {
                         d3.select(this).style("cursor", "default").style('text-decoration', 'none');
                     })
-                ;
+                    ;
             }
         }
+    }
+
+    subscribe(searchBar) {
+        this.searchBar = searchBar
     }
 }

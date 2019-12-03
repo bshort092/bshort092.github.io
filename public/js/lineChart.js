@@ -118,6 +118,7 @@ class LineChart {
                 return yscale(d.property);
             });
 
+        d3.select("#lines").selectAll('.line-2').remove();
         let updateLine = d3.select("#lines")
             .selectAll('path')
             .data(data)
@@ -133,7 +134,7 @@ class LineChart {
             .attr('stroke', 'green')
             .attr('stroke-width', 1.5)
             .attr('fill', 'none')
-        ;
+            ;
 
         // let update = d3.select("#lines")
         //     .selectAll('circle')
@@ -294,7 +295,7 @@ class LineChart {
             .attr('stroke', '#bd0000')
             .attr('stroke-width', 1.5)
             .attr('fill', 'none')
-        ;
+            ;
 
         let updateLine2 = d3.select("#lines")
             .selectAll('.line-2')
@@ -312,7 +313,7 @@ class LineChart {
             .attr('stroke', '#0298de')
             .attr('stroke-width', 1.5)
             .attr('fill', 'none')
-        ;
+            ;
 
         // let update = d3.select("#lines")
         //     .selectAll('circle')
