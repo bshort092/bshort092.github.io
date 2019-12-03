@@ -124,8 +124,8 @@ class LineChart {
                 return yscale(d.property);
             });
 
-        d3.select("#lines").selectAll('.line-2').remove();
-        
+        d3.select("#lines").selectAll('path').remove();
+
         let updateLine = d3.select("#lines")
             .selectAll('path')
             .data(data)
@@ -290,6 +290,7 @@ class LineChart {
                 return yscale(d.property);
             });
 
+        d3.select("#lines").selectAll('path').remove();
         let updateLine = d3.select("#lines")
             .selectAll('.line-1')
             .data(data)
