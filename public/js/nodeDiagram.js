@@ -88,14 +88,12 @@ class NodeDiagram {
                 // add the genre to actor link
                 this.actorInfo.links.unshift({
                     source: genreName,
-                    target: actor,
-                    // value: 1
+                    target: actor
                 });
             }
             let genreLink = {
                 source: this.movies[i].title,
-                target: genreName,
-                // value: 1
+                target: genreName
             };
             if (!this.containsLink(this.actorInfo.links, genreLink)) {
                 // add the movie to genre link
@@ -120,30 +118,131 @@ class NodeDiagram {
         return sameMovieActors;
     }
 
-    updateTwo(actor, actor_id, otherActor, otherActor_id) {
-        console.log(this.width);
+    // updateTwo(actor, actor_id, otherActor, otherActor_id) {
+    //     this.actorInfo = {
+    //         'nodes': [],
+    //         'links': []
+    //     };
+    //
+    //     // iterate through each movie
+    //     for (let i = 0; i < this.movies.length; i++) {
+    //         let sameMovieActors = this.checkSameMovie(actor_id, otherActor_id, i);
+    //         if (sameMovieActors.length > 1)
+    //         {
+    //             this.addGenreLink(i, actor, 2);
+    //             this.addGenreLink(i, otherActor, 4);
+    //
+    //             // add the movie node
+    //             let movieNode = {id: this.movies[i].title, group: 3};
+    //             this.actorInfo.nodes.push(movieNode);
+    //         }
+    //     }
+    //     // add the actor node
+    //     this.actorInfo.nodes.unshift({id: actor, group: 1});
+    //     this.actorInfo.nodes.unshift({id: otherActor, group: 5});
+    //
+    //     this.restructureNodes();
+    // }
 
+    findOtherActor(otherActor, otherActor_id, currentMovieList, round, checkedActors, checkedMovies) {
+        if (round === 5) {
+            return false;
+        }
+
+        let newMovieList = [];
+
+        for (let i = 0; i < currentMovieList.length; i++) {
+            for (let j = 0; j < currentMovieList[i].cast.length; j++) {
+                let found = false;
+                for (let k = 0; k < this.movies.length; k++) {
+                    // iterate through each cast member of the movie
+                    if (this.movies[k].title !== currentMovieList[i].title) {
+                    // if (!checkedMovies.includes(this.movies[k].title)) {
+
+                        for (let l = 0; l < this.movies[k].cast.length; l++) {
+                            if (!checkedActors.includes(this.movies[k].cast[l].name)) {
+                                if (this.movies[k].cast[l].id === currentMovieList[i].cast[j].id &&
+                                    this.movies[k].cast[l].id === otherActor_id) {
+                                    this.actorInfo.links.unshift({
+                                        source: this.movies[k].title,
+                                        target: otherActor
+                                    });
+                                    this.actorInfo.nodes.push({
+                                        id: this.movies[k].title,
+                                        group: 3
+                                    });
+                                    checkedActors.push(otherActor);
+                                    // checkedMovies.push(this.movies[k].title);
+                                    found = true;
+                                }
+                                // check if selected actor is in the cast of the movie
+                                else if (this.movies[k].cast[l].id === currentMovieList[i].cast[j].id) {
+                                    checkedActors.push(otherActor);
+                                    // checkedMovies.push(this.movies[k].title);
+                                    newMovieList.push(this.movies[k]);
+                                    // iterate through the genres the movie pertains to
+                                    this.actorInfo.links.unshift({
+                                        source: this.movies[k].title,
+                                        target: currentMovieList[i].title
+                                    });
+                                    // add the movie node
+                                    this.actorInfo.nodes.push({
+                                        id: this.movies[k].title,
+                                        group: 3
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+                if (found) {
+                    return true;
+                }
+            }
+        }
+        // this.findOtherActor(otherActor, otherActor_id, newMovieList, round++, checkedActors, checkedMovies);
+    }
+
+    updateTwo(actor, actor_id, otherActor, otherActor_id) {
         this.actorInfo = {
             'nodes': [],
             'links': []
         };
 
+        let currentMovies = [];
+        let checkedActors = [];
+        checkedActors.push(actor);
+        let checkedMovies = [];
+
         // iterate through each movie
         for (let i = 0; i < this.movies.length; i++) {
-            let sameMovieActors = this.checkSameMovie(actor_id, otherActor_id, i);
-            if (sameMovieActors.length > 1)
-            {
-                this.addGenreLink(i, actor, 2);
-                this.addGenreLink(i, otherActor, 4);
-
-                // add the movie node
-                let movieNode = {id: this.movies[i].title, group: 3};
-                this.actorInfo.nodes.push(movieNode);
+            // iterate through each cast member of the movie
+            for (let j = 0; j < this.movies[i].cast.length; j++) {
+                // check if selected actor is in the cast of the movie
+                if (this.movies[i].cast[j].id === actor_id) {
+                    currentMovies.push(this.movies[i]);
+                    checkedMovies.push(this.movies[i].title);
+                    // iterate through the genres the movie pertains to
+                    this.actorInfo.links.unshift({
+                        source: this.movies[i].title,
+                        target: actor
+                    });
+                    // add the movie node
+                    this.actorInfo.nodes.push({
+                        id: this.movies[i].title,
+                        group: 3
+                    });
+                    break;
+                }
             }
         }
         // add the actor node
+
+
+        let result = this.findOtherActor(otherActor, otherActor_id, currentMovies, 1, checkedActors, currentMovies);
         this.actorInfo.nodes.unshift({id: actor, group: 1});
         this.actorInfo.nodes.unshift({id: otherActor, group: 5});
+
 
         this.restructureNodes();
     }
