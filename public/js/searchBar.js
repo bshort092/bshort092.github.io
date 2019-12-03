@@ -1,6 +1,6 @@
 class SearchBar {
   // Adding the search bar with all of its attributes
-  constructor(nodeDiagram) {
+  constructor(nodeDiagram, lineChart) {
 
     d3.csv("data/people.csv").then(peopleInfo => {
       let searchContainer = d3.selectAll("#search-bar-container");
@@ -136,6 +136,9 @@ class SearchBar {
 
       function selectSearchOne(select) {
         searchResultsAreShownOne = false;
+        d3.select('#searchOne')
+          .property('value', "");
+        ;
         searchResultsOne.selectAll('li')
           .remove()
           ;
@@ -148,30 +151,57 @@ class SearchBar {
 
         sel.append('h2')
           .attr('id', 'selectedPersonOne')
-          .text("X " + select.name)
+          .text(select.name)
           ;
         personOne = select;
-        nodeDiagram.updateTwo(personOne.name, parseInt(personOne.id), personTwo.name, parseInt(personTwo.id));
+        if (personTwo != null) {
+          nodeDiagram.updateTwo(personOne.name, parseInt(personOne.id), personTwo.name, parseInt(personTwo.id));
+          lineChart.update2(document.getElementById('dataset').value, parseInt(personOne.id), parseInt(personTwo.id))
+        } else {
+          nodeDiagram.update(personOne.name, parseInt(personOne.id));
+          lineChart.update(document.getElementById('dataset').value, parseInt(personOne.id))
+        }
       }
 
       function selectSearchTwo(select) {
         searchResultsAreShownTwo = false;
+        d3.select('#searchTwo')
+          .property('value', "");
+        ;
         searchResultsTwo.selectAll('li')
           .remove()
           ;
-        d3.select('#selected-two')
-          .select('h2')
+
+        let sel = d3.select('#selected-two');
+        sel.select('#selectedPersonTwo')
           .remove()
           ;
-        let sel = d3.select('#selected-two')
+        let inner = sel.append('div')
+          .attr('id', 'selectedPersonTwo')
           ;
 
-        sel.append('h2')
-          .attr('id', 'selectedPersonTwo')
-          .text("X " + select.name)
+        inner.append('span')
+          .text(select.name)
+          ;
+
+        inner.append('span')
+          .attr('id', 'xbutton')
+          .text("X")
+          .on('click', xButtonClick)
           ;
         personTwo = select;
         nodeDiagram.updateTwo(personOne.name, parseInt(personOne.id), personTwo.name, parseInt(personTwo.id));
+        lineChart.update2(document.getElementById('dataset').value, parseInt(personOne.id), parseInt(personTwo.id));
+      }
+
+      function xButtonClick() {
+        let sel = d3.select('#selected-two');
+        sel.select('#selectedPersonTwo')
+          .remove()
+          ;
+        personTwo = null;
+        nodeDiagram.update(personOne.name, parseInt(personOne.id))
+        lineChart.update(document.getElementById('dataset').value, parseInt(personOne.id))
       }
     });
   }

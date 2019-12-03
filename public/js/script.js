@@ -41,24 +41,13 @@ d3.csv("data/tmdb_5000_movies.csv").then(movieInfo => {
     }
     let movieInfo = new MovieInfo(movies);
     let nodeDiagram = new NodeDiagram(movies, movieInfo);
-    // this is a default actor and actor id; once the user is able to search, these will change.
-    let actor = "Tom Hanks";
-    let actor_id = 31;
-    let otherActor = 'Jodi Benson';
-    let otherActor_id = 63978;
-    //nodeDiagram.updateTwo(actor, actor_id, otherActor, otherActor_id);
-
     lineChart = new LineChart(movies);
-    //lineChart.update2(document.getElementById('dataset').value, 31, 63978);
-
-    // UNCOMMENT THIS FOR THE SEARCH ABILITY, BUT IT ELIMINATES THE MULTI-ACTOR ABILITY:
     let searchBar = new SearchBar(nodeDiagram, lineChart);
   });
 });
 
 //something that might be useful for changing data in line chart
 function chooseProperty() {
-  console.log("HEY")
   let selection = document.getElementById('dataset').value;
 
   lineChart.update2(selection, 31, 63978);
