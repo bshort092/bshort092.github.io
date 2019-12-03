@@ -55,11 +55,12 @@
     <h2 class="">Line Chart</h2>
     <div id="plot-selector">
       <label>Plot:</label>
-      <select id="dataset">
-        <option selected value="attendance">Revenue</option>
-        <option value="teams">Placeholder #2</option>
-        <option value="matches">Placeholder #3</option>
-        <option value="goals">Placeholder #4</option>
+      <select id="dataset" onchange="chooseProperty()">
+      <!-- <select id="dataset"> -->
+        <option selected value="revenue">Revenue</option>
+        <option value="budget">Budget</option>
+        <option value="popularity">Popularity</option>
+        <option value="runtime">Runtime</option>
       </select>
     </div>
 
@@ -69,6 +70,7 @@
       <g id="lines"></g>
     </svg>
   </div>
+
 </body>
 <script type="application/javascript" src="public/js/lineChart.js"></script>
 <script type="application/javascript" src="public/js/movieInfo.js"></script>

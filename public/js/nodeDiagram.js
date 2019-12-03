@@ -11,7 +11,8 @@ class NodeDiagram {
         this.movieInfo = movieInfo;
 
         // width of the node link diagram
-        this.width = screen.width * 0.8;
+        this.width = screen.width;
+
         // height of the node link diagram
         this.height = 800;
 
@@ -120,6 +121,8 @@ class NodeDiagram {
     }
 
     updateTwo(actor, actor_id, otherActor, otherActor_id) {
+        console.log(this.width);
+
         this.actorInfo = {
             'nodes': [],
             'links': []
@@ -231,8 +234,8 @@ class NodeDiagram {
         // set up the node link diagram graph layout
         this.graphLayout = d3.forceSimulation(this.actorInfo.nodes)
             .force("charge", d3.forceManyBody().strength(-3000))
-            .force("center", d3.forceCenter(this.width / 2, this.height / 2))
-            .force("x", d3.forceX(this.width / 2).strength(1))
+            .force("center", d3.forceCenter(this.width / 3.5, this.height / 2))
+            .force("x", d3.forceX(this.width / 3.5).strength(1))
             .force("y", d3.forceY(this.height / 2).strength(1))
             .force("link", d3.forceLink(this.actorInfo.links).id((d) => {
                 return d.id;
@@ -250,9 +253,7 @@ class NodeDiagram {
             .attr("y", 0)
             .attr("height", this.height)
             .attr("width", this.width)
-            .style("stroke", "black")
-            .style("fill", "black")
-            .style("stroke-width", 10);
+            .attr("class", 'nodeSpace');
 
         // add a container element (group) to the svg to then add the node link diagram inside that
         this.container = this.svg.append("g");
@@ -326,7 +327,6 @@ class NodeDiagram {
             .style("fill", d => {
                 return this.textColor(d.node.group);
             })
-            .style("font-family", "Arial")
             .style("font-size", d => {
                 if (d.node.group === 1 || d.node.group === 5) {
                     return "18"
@@ -345,8 +345,7 @@ class NodeDiagram {
                 else {
                     return "normal";
                 }
-            })
-            .style("pointer-events", "none"); // to prevent mouseover/drag capture
+            }); // to prevent mouseover/drag capture
 
         // function to check the neighbors of the node
         let neighbors = (a, b) => {

@@ -73,7 +73,7 @@
     width: 1200px;
     height: 350px;
 
-}
+} */
 
 #node-diagram {
   vertical-align: top;
@@ -85,7 +85,7 @@
 
 /*Movie Info CSS*/
 .sideBar {
-  width: 50%;
+  width: 40%;
   padding: 1%;
   height: 770px;
   overflow-y: scroll;
@@ -95,4 +95,15 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+/*Node Diagram CSS*/
+.nodeSpace {
+  stroke: black;
+  fill: black;
+  stroke-width:10;
+}
+
+.labelNode {
+  font-family: Arial;
+  pointer-events: none;
 }
